@@ -14,9 +14,7 @@ public class Owner {
         ownerName = "";
         ownerPhone = "";
         ownerEmail = "";
-        ownerCar = new Car();
         ownerFine = new Fine();
-        ownerLicense = new DriverLicense();
     }
     public void setOwnerId(Scanner sc){
         boolean validInput = false;
