@@ -8,15 +8,25 @@ public class Owner {
     private Car ownerCar;
     private Fine ownerFine;
     private DriverLicense ownerLicense;
+    private int attemptsLeft;
 
     public Owner() {
-        ownerId = "";
-        ownerName = "";
-        ownerPhone = "";
-        ownerEmail = "";
-        ownerCar = new Car();
-        ownerFine = new Fine();
-        ownerLicense = new DriverLicense();
+        this.ownerId = "";
+        this.ownerName = "";
+        this.ownerPhone = "";
+        this.ownerEmail = "";
+        this.ownerFine = new Fine();
+        this.attemptsLeft = 2;
+    }
+    public Owner(String ownerId, String ownerName, String ownerPhone, String ownerEmail, Car ownerCar, DriverLicense ownerLicense) {
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
+        this.ownerPhone = ownerPhone;
+        this.ownerEmail = ownerEmail;
+        this.ownerCar = ownerCar;
+        this.ownerLicense = ownerLicense;
+        this.ownerFine = new Fine();
+        this.attemptsLeft = 2;
     }
     public void setOwnerId(Scanner sc){
         boolean validInput = false;
