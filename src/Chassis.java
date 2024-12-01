@@ -1,22 +1,22 @@
 public class Chassis {
     private String material;
     private double weight;
-    private boolean hasRust;
-    private boolean isAligned;
+    private double chassisCorrosion;
+    private double chassisAlignment;
     private int SuspensionBounce;
 
     public Chassis() {
         this.material = "";
         this.weight = 0;
-        this.hasRust = false;
-        this.isAligned = false;
+        this.chassisCorrosion = 0;
+        this.chassisAlignment = 0;
         this.SuspensionBounce = 0;
     }
     public Chassis(String material, double weight) {
         this.material = material;
         this.weight = weight;
-        this.hasRust = false;
-        this.isAligned = false;
+        this.chassisCorrosion = 0;
+        this.chassisAlignment = 0;
         this.SuspensionBounce = 0;
     }
 
@@ -36,20 +36,20 @@ public class Chassis {
         this.weight = weight;
     }
 
-    public boolean isHasRust() {
-        return hasRust;
+    public double getChassisCorrosion() {
+        return chassisCorrosion;
     }
 
-    public void setHasRust(boolean hasRust) {
-        this.hasRust = hasRust;
+    public void setChassisCorrosion(double chassisCorrosion) {
+        this.chassisCorrosion = chassisCorrosion;
     }
 
-    public boolean isAligned() {
-        return isAligned;
+    public double getChassisAlignment() {
+        return chassisAlignment;
     }
 
-    public void setAligned(boolean aligned) {
-        isAligned = aligned;
+    public void setChassisAlignmentLevel(double alignment) {
+        chassisAlignment = alignment;
     }
 
     public int getSuspensionBounce() {

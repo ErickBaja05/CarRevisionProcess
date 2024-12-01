@@ -8,6 +8,8 @@ public class Engine {
     private int horsepower;
     private int mileage;
     private boolean isOperational;
+    private double engineCylinder;
+    private boolean engineLeakage;
 
 
     public Engine() {
@@ -80,5 +82,13 @@ public class Engine {
 
     public void setOperational(boolean operational) {
         isOperational = operational;
+    }
+
+    public boolean isEngineLeakage() {
+        return engineLeakage;
+    }
+
+    public double getEngineCylinder() {
+        return engineCylinder;
     }
 }

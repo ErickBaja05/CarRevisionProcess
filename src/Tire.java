@@ -3,7 +3,11 @@ public class Tire {
     private int tiredId;
     private int tireTreading;
     private double tirePresion;
-
+    public Tire(){
+        this.tiredId = 0;
+        this.tireTreading = 0;
+        this.tirePresion = 0;
+    }
     public Tire(int tiredId, int tireTreading, int tirePresion){
 
         this.tiredId = tiredId;
