@@ -1,3 +1,5 @@
+package carRevision;
+
 public class Tire {
 
     private int tiredId;

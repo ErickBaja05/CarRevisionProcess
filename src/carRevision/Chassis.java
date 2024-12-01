@@ -1,3 +1,5 @@
+package carRevision;
+
 public class Chassis {
     private String material;
     private double weight;

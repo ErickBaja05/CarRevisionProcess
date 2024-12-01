@@ -1,3 +1,5 @@
+package carRevision;
+
 public class Light {
 
     private int lightsId;

@@ -1,3 +1,5 @@
+package carRevision;
+
 
 public class Car {
     private int carId;
@@ -95,6 +97,10 @@ public class Car {
 
     public ExhaustPipe getExhaustPipe() {
         return this.exhaustPipe;
+    }
+
+    public String getCarPlate(){
+        return this.carPlate;
     }
 
 

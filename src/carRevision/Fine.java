@@ -1,8 +1,9 @@
-import java.text.SimpleDateFormat;
+package carRevision;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+
 public class Fine {
     private static int fineCounter = 1;
     private final int fineId;
