@@ -5,6 +5,12 @@ public class Light {
     private int lightIntensity;
     private String lightCoverStatus;
 
+    public Light(){
+        lightsId = 0;
+        lightStatus = 0;
+        lightIntensity = 0;
+        lightCoverStatus = "";
+    }
     public Light(int lightsId, int lightStatus, int lightIntensity, String lightCoverStatus){
 
         this.lightsId = lightsId;
@@ -45,5 +51,7 @@ public class Light {
     public void setLightCoverStatus(String lightCoverStatus) {
         this.lightCoverStatus = lightCoverStatus;
     }
+
+
 
 }
