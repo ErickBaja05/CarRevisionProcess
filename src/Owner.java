@@ -20,10 +20,10 @@ public class Owner {
     }
     public void setOwnerId(Scanner sc){
         boolean validInput = false;
-        while (!validInput) {
+        while (!validInput) { //This loop will check if the length of the ID is valid, if not it will ask for the ID again.
             System.out.println("Ingrese la cedula del duenio: ");
             this.ownerId = sc.nextLine();
-            if(this.ownerId.length() < 10){
+            if(this.ownerId.length() != 10){
                 System.out.println("La cedula ingresada no es valida: ");
                 continue;
             }
@@ -39,7 +39,7 @@ public class Owner {
         while (!validInput) {
             System.out.println("Ingrese el numero celular del duenio");
             this.ownerPhone = sc.nextLine();
-            if(this.ownerPhone.length() < 10){
+            if(this.ownerPhone.length() != 10){ //This loop will check if the length of the phone number is valid, if not it will ask for it again.
                 System.out.print("EL numero ingresado no es valido: ");
                 continue;
             }
@@ -54,7 +54,7 @@ public class Owner {
         this.ownerCar = ownerCar; //We must wait to invoke all car functions here to set the car
     }
     public void setOwnerFine(Fine ownerFine){
-        this.ownerFine = ownerFine;
+        this.ownerFine = ownerFine; //The fine will be changed by the AMT and will use this method to modify the user's fine.
     }
     public void setOwnerLicense(DriverLicense ownerLicense){
         this.ownerLicense = ownerLicense;
@@ -80,9 +80,8 @@ public class Owner {
     public DriverLicense getOwnerLicense() {
         return ownerLicense;
     }
-
     public void printOwner(){
-        System.out.printf("Cedula:%s%nNombre: %s%nCelular: %s%nCorreo Electronico: %s%n",
+        System.out.printf("Cedula: %s%nNombre: %s%nCelular: %s%nCorreo Electronico: %s%n",
                 this.getOwnerId(), this.getOwnerName(), this.getOwnerPhone(), this.getOwnerEmail());
     }
 }
