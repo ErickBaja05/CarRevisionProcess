@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 public class Engine {
     private String engineType;
     private double displacement;
@@ -26,8 +30,24 @@ public class Engine {
         return engineType;
     }
 
-    public void setEngineType(String engineType) {
-        this.engineType = engineType;
+    public void setEngineType(Scanner sc) {
+        boolean validINput = false;
+        int engineType;
+        do {
+            try {
+                System.out.println("Ingrese el tipo de motor entre las siguientes opciones:  ");
+                System.out.println("1. ELECTRICO");
+                System.out.println("2. DIESEL");
+                System.out.println("3. HIBRIDO");
+                sc.nextInt();
+                validINput = true;
+            }catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("INGRESE VALORES SOLO ENTRE 1 Y 3");
+            }finally {
+                sc.nextLine();
+            }
+        }while(!validINput);
     }
 
     public double getDisplacement() {
