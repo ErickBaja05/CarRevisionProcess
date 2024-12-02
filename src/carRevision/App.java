@@ -31,7 +31,12 @@ public class App {
 //        license.setDriverLicenseExpirationDate(sc);
 //        license.printDriverLicense();
 //        sc.close();
-
+        Car car1 = new Car();
+         car1.getCarBrakes().setBrakePadsStatus(sc);
+         car1.getCarBrakes().setBrakeHeating(sc);
+         Inspector inspector1 = new Inspector(1,"Juan");
+         inspector1.checkBrakeStatus(car1);
+        System.out.println("Estado general de los frenos: " + car1.getCarBrakes().getBrakeOverallStatus());
 
 
 

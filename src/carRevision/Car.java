@@ -42,7 +42,10 @@ public class Car {
         this.carRegistration = carRegistration;
         this.exhaustPipe = new ExhaustPipe();
     }
-
+    // Constructor por defecto for testing
+    public Car(){
+        this.carBrakes = new Brake();
+    }
 
     // Metodos
     public void showCarInformation(){
