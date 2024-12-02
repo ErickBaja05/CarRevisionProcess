@@ -1,3 +1,5 @@
+package carRevision;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
@@ -8,6 +10,14 @@ public class DriverLicense {
     private LocalDate driverLicenseEmissionDate;
     private LocalDate driverLicenseExpirationDate;
 
+
+    public DriverLicense(String driverLicenseId, String driverLicenseCategory,
+                         LocalDate driverLicenseEmissionDate, LocalDate driverLicenseExpirationDate) {
+        this.driverLicenseId = driverLicenseId;
+        this.driverLicenseCategory = driverLicenseCategory;
+        this.driverLicenseEmissionDate = driverLicenseEmissionDate;
+        this.driverLicenseExpirationDate = driverLicenseExpirationDate;
+    }
     public void setDriverLicenseId(Scanner sc){
         boolean validInput = false;
         while (!validInput) { //This loop will check if the length of the ID is valid, if not, it will ask for it again.
@@ -123,4 +133,5 @@ public class DriverLicense {
     public void printDriverLicense(){
         System.out.printf("ID de la licencia de conducir: %s%nTipo de Licencia: %s%nFecha de Emision: %s%nFecha de Expiracion: %s%n", getDriverLicenseId(),getDriverLicenseCategory(),getDriverLicenseEmissionDate(),getDriverLicenseExpirationDate());
     }
+
 }

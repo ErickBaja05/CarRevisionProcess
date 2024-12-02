@@ -1,3 +1,5 @@
+package carRevision;
+
 public class ExhaustPipe {
 
     private int ExhaustPipeId;
@@ -5,6 +7,13 @@ public class ExhaustPipe {
     private double co2Emision;
     private boolean gasEmisionValue;
 
+
+    public ExhaustPipe() {
+        this.ExhaustPipeId = 0;
+        this.soundLevel = 0;
+        this.co2Emision = 0;
+        this.gasEmisionValue = false;
+    }
     public ExhaustPipe(int ExhaustPipeId, int soundLevel, double co2Emision, boolean gasEmissionValue){
 
         this.ExhaustPipeId = ExhaustPipeId;

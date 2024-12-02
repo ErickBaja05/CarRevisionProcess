@@ -1,13 +1,16 @@
-import java.time.LocalDate;
+package carRevision;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
+
 public class Engine {
     private String engineType;
     private double displacement;
     private int horsepower;
     private int mileage;
     private boolean isOperational;
+    private double engineCylinder;
+    private boolean engineLeakage;
 
 
     public Engine() {
@@ -80,5 +83,13 @@ public class Engine {
 
     public void setOperational(boolean operational) {
         isOperational = operational;
+    }
+
+    public boolean isEngineLeakage() {
+        return engineLeakage;
+    }
+
+    public double getEngineCylinder() {
+        return engineCylinder;
     }
 }
