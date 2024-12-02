@@ -45,6 +45,7 @@ public class Car {
     // Constructor por defecto for testing
     public Car(){
         this.carBrakes = new Brake();
+        this.carChassis = new Chassis();
     }
 
     // Metodos
