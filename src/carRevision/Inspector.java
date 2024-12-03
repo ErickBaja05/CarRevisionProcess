@@ -1,5 +1,6 @@
 package carRevision;
 
+
 public class Inspector {
     private int inspectorId;
     private String inspectorName;
@@ -15,16 +16,117 @@ public class Inspector {
     // Funciones que el inspector realiza durante la revision:
     // Respecto a frenos, el inspector revisa el estado de las pastillas, la temperatura y la eficiencia de frenado
     public boolean checkBrakeStatus(Car car){
+
         int padsStatusRev = car.getCarBrakes().getBrakePadsStatus();
-        double brakeHeatingRev = car.getCarBrakes().getBrakeHeating();
-        // String brakeStatusRev = car.getCarBrakes().getBrakeStatus();
-        return true;
+        int brakeHeatingRev = car.getCarBrakes().getBrakeHeating();
+
+        //The following code assigns the brake pads' status based on the grade received.
+        if (padsStatusRev >= 5 && brakeHeatingRev <= 600)
+            {
+                if (padsStatusRev >= 7 && brakeHeatingRev <= 350){
+                    car.getCarBrakes().setBrakeOverallStatus("Bueno"); //Everything is alright
+                } else{
+                    car.getCarBrakes().setBrakeOverallStatus("Regular");
+                    if (padsStatusRev < 7){
+                        //here we can add in the observations that the driver should  be weary of the brakes status.
+                        System.out.println("Pastillas Regular");
+                    }
+                    if(brakeHeatingRev > 350){
+                        System.out.println("Calentamiento en rango tolerable");
+                        //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
+                    }
+
+                }
+        } else {
+            car.getCarBrakes().setBrakeOverallStatus("Deficiente");
+            if ((padsStatusRev < 7) && (padsStatusRev >= 5)) {
+                //here we can add in the observations that the driver should  be weary of the brakes status.
+                System.out.println("Pastillas Regular");
+            } else if (padsStatusRev < 5) {
+                System.out.println("Pastillas Deficientes");
+                //Here wwe say that the brakes  pads are faulty
+            }
+            if((brakeHeatingRev > 350) && (brakeHeatingRev <= 600)){
+                System.out.println("Calentamiento en rango tolerable");
+                //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
+
+            }else if(brakeHeatingRev > 600){
+                    System.out.println("Sobrecalentamiento excesivo");
+                    //here we say the brakes are overheating over the tolerated range.
+                }
+            }
+        //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
+        if(car.getCarBrakes().getBrakeOverallStatus().equals("Bueno") || car.getCarBrakes().getBrakeOverallStatus().equals("Regular"))
+        {
+            return true;
+        } else{
+            return false;
+        }
     }
-    // A traves de esta funcion, el inspector puede revisar el grado de corriosion, alineamiento y estado del chassis
-//    public boolean checkChassisStatus(Car car){
-//        double chassisCorrosionRev = car.getCarChassis().getChassisCorrosion();
-//        double chassisAlignmentRev = car.getCarChassis().getChassisAlignment();
-//    }
+
+    public boolean checkChassisStatus(Car car){
+         int chassisCorrosionRev = car.getCarChassis().getChassisCorrosion();
+         int chassisAlignmentRev = car.getCarChassis().getChassisAlignment();
+         int chassisSuspensionBounceRev = car.getCarChassis().getSuspensionBounce();
+
+        //The following code assigns the brake pads' status based on the grade received.
+        if (chassisAlignmentRev >= 5 && chassisCorrosionRev >= 5 && chassisSuspensionBounceRev >= 5)
+        {
+            if (chassisAlignmentRev >= 7 && chassisCorrosionRev >= 7 && chassisSuspensionBounceRev >=7){
+                car.getCarChassis().setChassisOverallStatus("Bueno"); //Everything is alright
+            } else{
+                car.getCarChassis().setChassisOverallStatus("Regular");
+                if (chassisAlignmentRev < 7){
+                    //here we can add in the observations that the driver should  be weary of.
+                    System.out.println("Desalinemiento en rango tolerable");
+                }
+                if(chassisCorrosionRev < 7)
+                {
+                    System.out.println("Corrosion en rango tolerable");
+                    //here we can add in the observations that the driver should  be weary of.
+                }
+                if (chassisSuspensionBounceRev < 7)
+                {
+                    System.out.println("Se debe revisar la suspension del auto");
+                    //here we can add in the observations that the driver should  be weary of.
+                }
+
+            }
+        } else {
+            car.getCarChassis().setChassisOverallStatus("Deficiente");
+            if ((chassisAlignmentRev < 7) && (chassisAlignmentRev >= 5)) {
+                //here we can add in the observations that the driver should  be weary of the brakes status.
+                System.out.println("Desalinemiento en rango tolerable");
+            } else if (chassisAlignmentRev < 5) {
+                System.out.println("Desalinamiento Intolerable");
+                //Here wwe say that the brakes  pads are faulty
+            }
+            if((chassisCorrosionRev < 7) && (chassisCorrosionRev >= 5)){
+                System.out.println("Corrosion en rango tolerable");
+                //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
+
+            }else if(chassisCorrosionRev < 5){
+                System.out.println("Corrosion Intolerable");
+                //here we say the brakes are overheating over the tolerated range.
+            }
+            if((chassisSuspensionBounceRev < 7) && (chassisSuspensionBounceRev >= 5)){
+                System.out.println("Ajustar la suspension");
+                //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
+
+            }else if(chassisSuspensionBounceRev < 5){
+                System.out.println("La suspension no funciona correctamente");
+                //here we say the brakes are overheating over the tolerated range.
+            }
+
+        }
+        //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
+        if(car.getCarChassis().getChassisOverallStatus().equals("Bueno") || car.getCarChassis().getChassisOverallStatus().equals("Regular"))
+        {
+            return true;
+        } else{
+            return false;
+        }
+    }
 //    // Mediante esta funcion, el inspector puede revisar el cilindraje y filtracion del motor
 //    public boolean checkEngineStatus(Car car){
 //        double engineCylinderRev = car.getCarEngine().getEngineCylinder();

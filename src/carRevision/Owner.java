@@ -10,7 +10,7 @@ public class Owner {
     private Car ownerCar;
     private Fine ownerFine;
     private DriverLicense ownerLicense;
-    private int attemptsLeft;
+
 
     public Owner() {
         this.ownerId = "";
@@ -18,7 +18,6 @@ public class Owner {
         this.ownerPhone = "";
         this.ownerEmail = "";
         this.ownerFine = new Fine();
-        this.attemptsLeft = 2;
     }
     public Owner(String ownerId, String ownerName, String ownerPhone, String ownerEmail, Car ownerCar, DriverLicense ownerLicense) {
         this.ownerId = ownerId;
@@ -28,33 +27,56 @@ public class Owner {
         this.ownerCar = ownerCar;
         this.ownerLicense = ownerLicense;
         this.ownerFine = new Fine();
-        this.attemptsLeft = 2;
     }
     public void setOwnerId(Scanner sc){
         boolean validInput = false;
+        String ownerID = "";
         while (!validInput) { //This loop will check if the length of the ID is valid, if not it will ask for the ID again.
             System.out.println("Ingrese la cedula del duenio: ");
-            this.ownerId = sc.nextLine();
-            if(this.ownerId.length() != 10){
+            ownerID = sc.nextLine();
+            if(ownerID.length() != 10){
                 System.out.println("La cedula ingresada no es valida: ");
+                continue;
+            }
+
+            try{
+                int ownerIDIsNumeric = Integer.parseInt(ownerID);
+            } catch(NumberFormatException e){
+                System.out.println("La cedula ingresada no es valida");
+                continue;
+            } catch(Exception e){
+                System.out.println("Error inesperado, intente nuevamente");
                 continue;
             }
             validInput = true;
         }
+        this.ownerId = ownerID;
     }
     public void setOwnerName(Scanner sc){
         System.out.println("Ingrese el nombre completo del duenio");
         this.ownerName = sc.nextLine();
     }
     public void setOwnerPhone(Scanner sc){
+        String ownerPhone = "";
         boolean validInput = false;
         while (!validInput) {
             System.out.println("Ingrese el numero celular del duenio");
-            this.ownerPhone = sc.nextLine();
-            if(this.ownerPhone.length() != 10){ //This loop will check if the length of the phone number is valid, if not it will ask for it again.
-                System.out.print("EL numero ingresado no es valido: ");
+            ownerPhone = sc.nextLine();
+            if(ownerPhone.length() != 10){ //This loop will check if the length of the phone number is valid, if not it will ask for it again.
+                System.out.println("El numero ingresado no es valido, intente nuevamente ");
                 continue;
             }
+            try{
+                int ownerPhoneIsNumeric = Integer.parseInt(ownerPhone);
+            } catch(NumberFormatException e){
+                System.out.println("El numero ingresado no es valido, intente nuevamente:");
+                continue;
+            } catch(Exception e){
+                System.out.println("Error inesperado, intente nuevamente");
+                continue;
+            }
+
+
             validInput = true;
         }
     }
