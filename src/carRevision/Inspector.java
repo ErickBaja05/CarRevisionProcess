@@ -1,6 +1,6 @@
 package carRevision;
 
-
+import java.util.Scanner;
 //
 //
 
@@ -19,6 +19,7 @@ public class Inspector {
 
     // Respecto a frenos, el inspector revisa el estado de las pastillas, la temperatura y la eficiencia de frenado
     public boolean checkBrakeStatus(Car car, Revision revision){
+
         boolean result = false;
         int padsStatusRev = car.getCarBrakes().getBrakePadsStatus();
         int brakeHeatingRev = car.getCarBrakes().getBrakeHeating();
@@ -38,7 +39,6 @@ public class Inspector {
                         revision.setRevisionObservation("Calentamiento en rango tolerable");
                         //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
                     }
-
                 }
                 if (brakeHeatingRev > 350) {
                     System.out.println("Calentamiento en rango tolerable");
@@ -46,8 +46,7 @@ public class Inspector {
                     // issue.
                 }
 
-            }
-        } else {
+        }else{
             car.getCarBrakes().setBrakeOverallStatus("Deficiente");
             if ((padsStatusRev < 7) && (padsStatusRev >= 5)) {
                 // here we can add in the observations that the driver should be weary of the
@@ -67,33 +66,30 @@ public class Inspector {
                 // here we say the brakes are overheating over the tolerated range.
             }
 
-        //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
-        if(car.getCarBrakes().getBrakeOverallStatus().equals("Bueno") || car.getCarBrakes().getBrakeOverallStatus().equals("Regular"))
-        {
-            result = true;
-        } else{
-            result = false;
+            //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
+            if(car.getCarChassis().getChassisOverallStatus().equals("Bueno") || car.getCarChassis().getChassisOverallStatus().equals("Regular"))
+            {
+                result = true;
+            } else{
+                result = false;
+            }
 
         }
         return result;
-    }
+}
 
-
-    public boolean checkChassisStatus(Car car){
+    public boolean checkChassisStatus(Car car) {
         boolean result = false;
 
         int chassisCorrosionRev = car.getCarChassis().getChassisCorrosion();
         int chassisAlignmentRev = car.getCarChassis().getChassisAlignment();
         int chassisSuspensionBounceRev = car.getCarChassis().getSuspensionBounce();
 
-
-
         //The following code assigns the brake pads' status based on the grade received.
-        if (chassisAlignmentRev >= 5 && chassisCorrosionRev >= 5 && chassisSuspensionBounceRev >= 5)
-        {
-            if (chassisAlignmentRev >= 7 && chassisCorrosionRev >= 7 && chassisSuspensionBounceRev >=7){
+        if (chassisAlignmentRev >= 5 && chassisCorrosionRev >= 5 && chassisSuspensionBounceRev >= 5) {
+            if (chassisAlignmentRev >= 7 && chassisCorrosionRev >= 7 && chassisSuspensionBounceRev >= 7) {
                 car.getCarChassis().setChassisOverallStatus("Bueno"); //Everything is alright
-            } else{
+            } else {
 
                 car.getCarChassis().setChassisOverallStatus("Regular");
                 if (chassisAlignmentRev < 7) {
@@ -140,11 +136,13 @@ public class Inspector {
             }
 
         }
-
+        return result;
+    }
 
     // Esta funcion permite al revisor evaluar el motor, teniendo en cuenta la
     // temperatura y filtrado del motor. Si cumple con lo
     // establecido, se retornará true, caso contrario, false
+
     public boolean checkEngine(Car car) {
         double engineTemperature = car.getCarEngine().getEngineTemperature();
         boolean engineLeakage = car.getCarEngine().isEngineLeakage();
@@ -221,50 +219,7 @@ public class Inspector {
         return revision;
     }
 
-    // // Esta funcion permite al inspector revisar el nivel de sonido del tubo de
-    // escape, asi
-    // // el porcentaje de emision de CO2
-    // public boolean checkExhaustPipeStatus(Car car){
-    // int soundLevelRev = car.getExhaustPipe().getSoundLevel();
-    // double co2EmisionRev = car.getExhaustPipe().getCo2Emision();
-    //
-    // }
-    // // Esta funcion permite al inspector revisar la intensidad y el estado de la
-    // // cubierta de las luces
-    // public boolean checkLightStatus(Car car){
-    // int lightIntensityRev = car.getCarLights().getLightIntensity();
-    // String coverStatusRev = car.getCarLights().getLightCoverStatus();
-    // }
-    // // Mediante esta funcion, el inspector puede revisar el estado y presion de
-    // las llantas
-    // public boolean checkTireStatus(Car car){
-    // int tireTreadingRev = car.getTire().getTireTreading();
-    // double tirePresion = car.getTire().getTirePresion();
-    // }
 
-        //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
-        if(car.getCarChassis().getChassisOverallStatus().equals("Bueno") || car.getCarChassis().getChassisOverallStatus().equals("Regular"))
-        {
-            result = true;
-        } else{
-            result = false;
-        }
-        return result;
-    }
-////    // Mediante esta funcion, el inspector puede revisar el cilindraje y filtracion del motor
-////    public boolean checkEngineStatus(Car car){
-////        double engineCylinderRev = car.getCarEngine().getEngineCylinder();
-////        boolean engineLeakageRev = car.getCarEngine().isEngineLeakage();
-////        // String engineStatus = car.getCarEngine().getEngineStatus();
-////    }
-////    // Esta funcion permite al inspector revisar el nivel de sonido del tubo de escape, asi
-////    // el porcentaje de emision de CO2
-////    public boolean checkExhaustPipeStatus(Car car){
-////        int soundLevelRev = car.getExhaustPipe().getSoundLevel();
-////        double co2EmisionRev = car.getExhaustPipe().getCo2Emision();
-////
-////    }
-//
     // This feature allows the inspector to check the intensity and status of the lights.
     public boolean checkLightStatus(Car car) {
         boolean result = false;
@@ -338,16 +293,19 @@ public class Inspector {
     }
 
     public void setCarInformation(Owner owner, Car car, Scanner sc){
-
-        car.getCarBrakes().setBrakeHeating(sc);
-        car.getCarBrakes().setBrakePadsStatus(sc);
-        car.getCarChassis().setChassisCorrosion(sc);
-        car.getCarChassis().setChassisAlignmentLevel(sc);
-        car.getCarLights().setLightIntensity(sc);
-        car.getCarLights().setLightStatus(sc);
-
-
-
+        owner.setOwnerCar(car);
+        owner.getOwnerCar().getCarBrakes().setBrakeHeating(sc);
+        owner.getOwnerCar().getCarBrakes().setBrakePadsStatus(sc);
+        owner.getOwnerCar().getCarChassis().setChassisCorrosion(sc);
+        owner.getOwnerCar().getCarChassis().setChassisAlignmentLevel(sc);
+        owner.getOwnerCar().getCarLights().setLightIntensity(sc);
+        owner.getOwnerCar().getCarLights().setLightStatus(sc);
+        owner.getOwnerCar().getCarTire().setTirePresion(sc);
+        owner.getOwnerCar().getCarTire().setTireTreading(sc);
+        owner.getOwnerCar().getCarEngine().setEngineType(sc);
+        owner.getOwnerCar().getCarEngine().setEngineLeakage(sc);
+        owner.getOwnerCar().getCarEngine().setEngineTemperature(sc);
+        owner.getOwnerCar().getExhaustPipe().setGasEmisionValue(sc,owner.getOwnerCar());
 
     }
 }

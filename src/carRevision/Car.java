@@ -111,6 +111,9 @@ public class Car {
     public void setCarYear(int carYear){
         this.carYear = carYear;
     }
+    public int getCarYear(){
+        return this.carYear;
+    }
 
 
 
