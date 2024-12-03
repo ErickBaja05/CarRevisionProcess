@@ -52,6 +52,8 @@ public class Revision {
     }
 
     public void setRevisionObservation(String revisionObservation) {
-        this.revisionObservation = revisionObservation;
+        StringBuilder observation = new StringBuilder();
+        observation.append(revisionObservation).append("\n");
+        this.revisionObservation = observation.toString();
     }
 }
