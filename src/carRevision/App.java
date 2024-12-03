@@ -32,11 +32,5 @@ public class App {
 //        license.printDriverLicense();
 //        sc.close();
 
-
-
-
-
-
-
     }
 }

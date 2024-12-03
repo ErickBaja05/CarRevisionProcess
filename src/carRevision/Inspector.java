@@ -38,15 +38,64 @@ public class Inspector {
 //        double co2EmisionRev = car.getExhaustPipe().getCo2Emision();
 //
 //    }
-//    // Esta funcion permite al inspector revisar la intensidad y el estado de la
-//    // cubierta de las luces
-//    public boolean checkLightStatus(Car car){
-//        int lightIntensityRev = car.getCarLights().getLightIntensity();
-//        String coverStatusRev = car.getCarLights().getLightCoverStatus();
-//    }
-//    // Mediante esta funcion, el inspector puede revisar el estado y presion de las llantas
-//    public boolean checkTireStatus(Car car){
-//        int tireTreadingRev = car.getTire().getTireTreading();
-//        double tirePresion = car.getTire().getTirePresion();
-//    }
+
+    // This feature allows the inspector to check the intensity and status of the lights.
+    public boolean checkLightStatus(Car car) {
+        int lightStatusRev = car.getCarLights().getLightStatus();
+        int lightIntensityRev = car.getCarLights().getLightIntensity();
+
+        // Evaluate the general condition of the lights
+        if (lightStatusRev == 1 && lightIntensityRev <= 4) {
+            car.getCarLights().setLightOverallStatus("Bueno"); // The lights are in good condition
+            System.out.println("Luces en buen estado.");
+        } else if (lightStatusRev == 1 && lightIntensityRev <= 7) {
+            car.getCarLights().setLightOverallStatus("Regular"); // The lights are functional, but with low intensity
+            System.out.println("Luces en estado regular. Revise la intensidad.");
+        } else {
+            car.getCarLights().setLightOverallStatus("Malo"); // The lights are burned out or very low intensity
+            if (lightStatusRev == 0) {
+                System.out.println("Luces quemadas. Es necesario reemplazarlas.");
+            }
+            if (lightIntensityRev > 7) {
+                System.out.println("Intensidad de las luces es deficiente.");
+            }
+        }
+        // Evaluate if the lights pass the inspection
+        if (car.getCarLights().getLightOverallStatus().equals("Bueno") || car.getCarLights().getLightOverallStatus().equals("Regular")) {
+            return true; // Approved
+        } else {
+            return false; // Not approved
+        }
+    }
+    }
+  // Using this feature, the inspector can check the condition and pressure of the tires.
+    public boolean checkTireStatus(Car car){
+        double tireTreadingRev = car.getCarTire().getTireTreading();
+        double tirePresionRev = car.getCarTire().getTirePresion();
+
+        // Evaluate the general condition of the tires
+        if (tireTreadingRev >= 1.66 && tirePresionRev >= 30 && tirePresionRev <= 40) {
+            car.getCarTire().setTireOverallStatus("Bueno"); // Tires in good condition
+            System.out.println("Llantas en buen estado.");
+        } else if (tireTreadingRev >= 1.66 && (tirePresionRev < 30 || tirePresionRev > 40)) {
+            car.getCarTire().setTireOverallStatus("Regular"); // Functional tires but with pressure outside the optimal range
+            System.out.println("Llantas en estado regular. Revise la presión.");
+        } else {
+            car.getCarTire().setTireOverallStatus("Malo"); // Tires in poor condition
+            if (tireTreadingRev < 1.66) {
+                System.out.println("Banda de rodadura insuficiente. Es necesario reemplazar las llantas.");
+            }
+            if (tirePresionRev < 20) {
+                System.out.println("Presión extremadamente baja. Infle las llantas inmediatamente.");
+            } else if (tirePresionRev > 70) {
+                System.out.println("Presión extremadamente alta. Ajuste la presión para evitar daños.");
+            }
+        }
+
+        if (car.getCarTire().getTireOverallStatus().equals("Bueno") || car.getCarTire().getTireOverallStatus().equals("Regular")) {
+            return true; // Approved
+        } else {
+            return false; // Not approved
+        }
+    }
 }
