@@ -75,7 +75,8 @@ public class Car {
     public boolean isFirstAidKit() {
         return this.firstAidKit;
     }
-    public Tire getTire(){
+
+    public Tire getCarTire(){
         return this.carTire;
     }
 

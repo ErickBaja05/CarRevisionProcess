@@ -26,15 +26,7 @@ public class App {
 //
 //
 //        sc.close();
-        carRevision.DriverLicense license = new carRevision.DriverLicense();
-        license.setDriverLicenseId(sc);
-        license.setDriverLicenseCategory(sc);
-        license.setDriverLicenseEmissionDate(sc);
-        license.setDriverLicenseExpirationDate(sc);
-        license.printDriverLicense();
 
-        Car car1 = new Car();
-        Inspector inspector1 = new Inspector(1,"Juan");
 
           /*
          car1.getCarBrakes().setBrakeType(sc);
@@ -57,6 +49,7 @@ public class App {
         System.out.println("Paso la revision del chasis: " + inspector1.checkChassisStatus(car1));
         System.out.println("El estado general del chasis es: " + car1.getCarChassis().getChassisOverallStatus());
        */
+
 
 
     }
