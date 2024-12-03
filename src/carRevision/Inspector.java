@@ -1,6 +1,9 @@
 package carRevision;
 
+import java.util.Scanner;
 
+//
+//
 public class Inspector {
     private int inspectorId;
     private String inspectorName;
@@ -11,12 +14,12 @@ public class Inspector {
         this.inspectorId = id;
         this.inspectorName = name;
     }
-    // TODO: Evaluar cada elemento
+
     // Metodos
     // Funciones que el inspector realiza durante la revision:
     // Respecto a frenos, el inspector revisa el estado de las pastillas, la temperatura y la eficiencia de frenado
-    public boolean checkBrakeStatus(Car car){
-
+    public boolean checkBrakeStatus(Car car, Revision revision){
+        boolean result = false;
         int padsStatusRev = car.getCarBrakes().getBrakePadsStatus();
         int brakeHeatingRev = car.getCarBrakes().getBrakeHeating();
 
@@ -29,10 +32,10 @@ public class Inspector {
                     car.getCarBrakes().setBrakeOverallStatus("Regular");
                     if (padsStatusRev < 7){
                         //here we can add in the observations that the driver should  be weary of the brakes status.
-                        System.out.println("Pastillas Regular");
+                        revision.setRevisionObservation("Pastillas en estado regular, pueden mejorarse");
                     }
                     if(brakeHeatingRev > 350){
-                        System.out.println("Calentamiento en rango tolerable");
+                        revision.setRevisionObservation("Calentamiento en rango tolerable");
                         //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
                     }
 
@@ -58,16 +61,18 @@ public class Inspector {
         //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
         if(car.getCarBrakes().getBrakeOverallStatus().equals("Bueno") || car.getCarBrakes().getBrakeOverallStatus().equals("Regular"))
         {
-            return true;
+            result = true;
         } else{
-            return false;
+            result = false;
         }
+        return result;
     }
 
     public boolean checkChassisStatus(Car car){
-         int chassisCorrosionRev = car.getCarChassis().getChassisCorrosion();
-         int chassisAlignmentRev = car.getCarChassis().getChassisAlignment();
-         int chassisSuspensionBounceRev = car.getCarChassis().getSuspensionBounce();
+        boolean result = false;
+        int chassisCorrosionRev = car.getCarChassis().getChassisCorrosion();
+        int chassisAlignmentRev = car.getCarChassis().getChassisAlignment();
+        int chassisSuspensionBounceRev = car.getCarChassis().getSuspensionBounce();
 
         //The following code assigns the brake pads' status based on the grade received.
         if (chassisAlignmentRev >= 5 && chassisCorrosionRev >= 5 && chassisSuspensionBounceRev >= 5)
@@ -122,27 +127,29 @@ public class Inspector {
         //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
         if(car.getCarChassis().getChassisOverallStatus().equals("Bueno") || car.getCarChassis().getChassisOverallStatus().equals("Regular"))
         {
-            return true;
+            result = true;
         } else{
-            return false;
+            result = false;
         }
+        return result;
     }
-//    // Mediante esta funcion, el inspector puede revisar el cilindraje y filtracion del motor
-//    public boolean checkEngineStatus(Car car){
-//        double engineCylinderRev = car.getCarEngine().getEngineCylinder();
-//        boolean engineLeakageRev = car.getCarEngine().isEngineLeakage();
-//        // String engineStatus = car.getCarEngine().getEngineStatus();
-//    }
-//    // Esta funcion permite al inspector revisar el nivel de sonido del tubo de escape, asi
-//    // el porcentaje de emision de CO2
-//    public boolean checkExhaustPipeStatus(Car car){
-//        int soundLevelRev = car.getExhaustPipe().getSoundLevel();
-//        double co2EmisionRev = car.getExhaustPipe().getCo2Emision();
+////    // Mediante esta funcion, el inspector puede revisar el cilindraje y filtracion del motor
+////    public boolean checkEngineStatus(Car car){
+////        double engineCylinderRev = car.getCarEngine().getEngineCylinder();
+////        boolean engineLeakageRev = car.getCarEngine().isEngineLeakage();
+////        // String engineStatus = car.getCarEngine().getEngineStatus();
+////    }
+////    // Esta funcion permite al inspector revisar el nivel de sonido del tubo de escape, asi
+////    // el porcentaje de emision de CO2
+////    public boolean checkExhaustPipeStatus(Car car){
+////        int soundLevelRev = car.getExhaustPipe().getSoundLevel();
+////        double co2EmisionRev = car.getExhaustPipe().getCo2Emision();
+////
+////    }
 //
-//    }
-
     // This feature allows the inspector to check the intensity and status of the lights.
     public boolean checkLightStatus(Car car) {
+        boolean result = false;
         int lightStatusRev = car.getCarLights().getLightStatus();
         int lightIntensityRev = car.getCarLights().getLightIntensity();
 
@@ -163,15 +170,18 @@ public class Inspector {
             }
         }
         // Evaluate if the lights pass the inspection
-        if (car.getCarLights().getLightOverallStatus().equals("Bueno") || car.getCarLights().getLightOverallStatus().equals("Regular")) {
-            return true; // Approved
+        if (car.getCarLights().getLightOverallStatus().equals("Bueno") ||
+                car.getCarLights().getLightOverallStatus().equals("Regular")) {
+            result = true; // Approved
         } else {
-            return false; // Not approved
+            result = false; // Not approved
         }
+        return result;
     }
-    }
-  // Using this feature, the inspector can check the condition and pressure of the tires.
+
+     //Using this feature, the inspector can check the condition and pressure of the tires.
     public boolean checkTireStatus(Car car){
+        boolean result = false;
         double tireTreadingRev = car.getCarTire().getTireTreading();
         double tirePresionRev = car.getCarTire().getTirePresion();
 
@@ -195,9 +205,31 @@ public class Inspector {
         }
 
         if (car.getCarTire().getTireOverallStatus().equals("Bueno") || car.getCarTire().getTireOverallStatus().equals("Regular")) {
-            return true; // Approved
+            result = true; // Approved
         } else {
-            return false; // Not approved
+            result = false; // Not approved
         }
+        return result;
+    }
+
+    public void setOwnerInformation(Owner owner, Scanner sc){
+        owner.setOwnerName(sc);
+        owner.setOwnerId(sc);
+        owner.setOwnerEmail(sc);
+        owner.setOwnerPhone(sc);
+    }
+
+    public void setCarInformation(Owner owner, Car car, Scanner sc){
+
+        car.getCarBrakes().setBrakeHeating(sc);
+        car.getCarBrakes().setBrakePadsStatus(sc);
+        car.getCarChassis().setChassisCorrosion(sc);
+        car.getCarChassis().setChassisAlignmentLevel(sc);
+        car.getCarLights().setLightIntensity(sc);
+        car.getCarLights().setLightStatus(sc);
+
+
+
+
     }
 }

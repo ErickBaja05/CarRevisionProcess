@@ -1,56 +1,113 @@
 package carRevision;
 
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Locale;
 import java.time.LocalDate;
 public class App {
+    public static void createLoadingSecuence(char type, int length, String message){
+        for(int i = 0; i <= length; i++){
+            int porcetaje = (i * 100)/length;
+            StringBuilder barra = new StringBuilder("[");
+            for(int j = 0; j < length; j++){
+                if(j < i){
+                    barra.append(type);
+                }else{
+                    barra.append(" ");
+                }
+            }
+            barra.append("] ");
+            System.out.print("\r" + barra + porcetaje + "%");
+            try{
+                Thread.sleep(200);
+            }catch(InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+        System.out.println("\n" + message);
+    }
+    public static String printMainMenu(){
+        StringBuilder menu = new StringBuilder();
+        menu.append("*******SISTEMA DE REVISION VEHICULAR 2024-B ***************").append("\n");
+        menu.append("1. INGRESAR INFORMACION DEL USUARIO").append("\n");
+        menu.append("2. INGRESAR INFORMACION DEL VEHICULO DEL USUARIO").append("\n");
+        menu.append("3. COMENZAR CON EL PROCESO DE REVISION").append("\n");
+        menu.append("4. MOSTRAR RESULTADOS DE REVISION Y ENVIAR LA INFORMACION AL DUEÑO DEL VEHICULO").append("\n");
+        menu.append("5. SALIR").append("\n");
+        menu.append("INGRESA LO QUE DESEAS REALIZAR EL DIA DE HOY: ");
+        return menu.toString();
+    }
+
+    public static int mainMenuOption(Scanner sc){
+        int op = 0;
+        do{
+            try{
+                System.out.println(App.printMainMenu());
+                op = sc.nextInt();
+                sc.nextLine();
+            }catch (InputMismatchException e){
+                sc.nextLine();
+                System.out.println("SOLO SE PERMITEN VALORES ENTEROS");
+            }
+            if(op <= 0 || op > 5){
+                System.out.println("OPCION INVALIDA");
+            }
+        }while(op <= 0 || op > 5);
+        return op;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println("Hello World");
         Scanner sc = new Scanner(System.in);
         sc.useLocale(Locale.ENGLISH);
-        //Test for the fine
-//        carRevision.Fine testFine = new carRevision.Fine();
-//        testFine.setTypeFine(sc);
-//        testFine.setFineCost(12.32);
-//        testFine.showFine();
-//
-//
-//        Test for the owner
-//        carRevision.Owner owner = new carRevision.Owner();
-//         owner.setOwnerId(sc);
-//        owner.setOwnerName(sc);
-//        owner.setOwnerEmail(sc);
-//        owner.setOwnerPhone(sc);
-//        owner.printOwner();
-//
-//
-//
-//        sc.close();
+        Inspector inspector = new Inspector(1,"Erick");
+        Owner owner = new Owner();
+        Car car = new Car();
+        Revision revision = new Revision(1,owner,inspector);
+        boolean isOwnerFilled = false;
+        boolean isCarFilled = false;
+        boolean isRevisionDone = false;
+        boolean isProcessCompleted = false;
+        boolean isStillInProcess = true;
+
+        while(isStillInProcess){
+            int op = mainMenuOption(sc);
+            switch(op){
+                case 1:
+                    System.out.println("A continuación debera llenar la información del propietario del vehiculo");
+                    System.out.println("Cargando: ");App.createLoadingSecuence('|', 20, "Carga completada");
+                    revision.getRevisionInspector().setOwnerInformation(revision.getRevisionOwner(),sc);
+                    isOwnerFilled = true;
+                    break;
+                case 2:
+                    if(isOwnerFilled){
+                        System.out.println("A continuación debera llenar la información del vehiculo del propietario ");
+                        System.out.println("Cargando");App.createLoadingSecuence('|', 20, "Carga completada");
+                    }else{
+                        System.out.println("PRIMERO DEBE INGRESAR LOS DATOS DEL PROPIETARIO DEL VEHICULO");
+                    }
+                    break;
+                case 3:
+                    if(isOwnerFilled && isCarFilled){
+                        System.out.println("COMENZANDO CON EL PROCESO DE REVISION");
+                        System.out.println("Revisando Frenos");
+                        revision.getRevisionInspector().checkBrakeStatus(revision.getRevisionOwner().getOwnerCar(), revision);
+                        App.createLoadingSecuence('|', 10, "Frenos Revisados!!");
+                        System.out.println(revision.getRevisionObservation());
+
+                    }else{
+                        System.out.println("TANTO LOS DATOS DEL PROPIETARIO DEL VEHICULO COMO DEL VEHICULO DEBEN" +
+                                " INGRESARSE PREVIAMENTE PARA REALIZAR LA REVISION");
+                    }
 
 
-          /*
-         car1.getCarBrakes().setBrakeType(sc);
-        System.out.println(car1.getCarBrakes().getBrakeType());
-         car1.getCarBrakes().setBrakePadsStatus(sc);
-         car1.getCarBrakes().setBrakeHeating(sc);
-         inspector1.checkBrakeStatus(car1);
-
-        System.out.println("Estado general de los frenos: " + car1.getCarBrakes().getBrakeOverallStatus());
-        */
-
-        /*
-        car1.getCarChassis().setMaterial(sc);
-        System.out.println("Material: " + car1.getCarChassis().getMaterial());
-        car1.getCarChassis().setWeight(sc);
-        System.out.println("Peso:" + car1.getCarChassis().getWeight() + " toneladas");
-        car1.getCarChassis().setChassisCorrosion(sc);
-        car1.getCarChassis().setChassisAlignmentLevel(sc);
-        car1.getCarChassis().setSuspensionBounce(sc);
-        System.out.println("Paso la revision del chasis: " + inspector1.checkChassisStatus(car1));
-        System.out.println("El estado general del chasis es: " + car1.getCarChassis().getChassisOverallStatus());
-       */
+            }
+        }
 
 
 
+
+        }
     }
-}
+

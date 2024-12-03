@@ -7,6 +7,7 @@ public class Tire {
     private int tiredId;
     private double tireTreading;
     private double tirePresion;
+    private String overallStatus;
     public Tire(){
         this.tiredId = 0;
         this.tireTreading = 0;
@@ -88,5 +89,12 @@ public class Tire {
             }
         }
         this.tirePresion = tirePresion;
+    }
+
+    public void setTireOverallStatus(String overallStatus) {
+        this.overallStatus = overallStatus;
+    }
+    public String getTireOverallStatus() {
+        return this.overallStatus;
     }
 }

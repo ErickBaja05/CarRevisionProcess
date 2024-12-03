@@ -7,6 +7,7 @@ public class Light {
     private int lightsId;
     private int lightStatus;
     private int lightIntensity;
+    private String ligthOverallStatus = "";
 
     public Light(){
         lightsId = 0;
@@ -91,6 +92,13 @@ public class Light {
             }
         }
         this.lightIntensity = lightIntensity;
+    }
+    public void setLightOverallStatus(String status) {
+        this.ligthOverallStatus = status;
+    }
+
+    public String getLightOverallStatus() {
+        return ligthOverallStatus;
     }
 
 }
