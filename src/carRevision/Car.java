@@ -107,6 +107,10 @@ public class Car {
     public String getCarPlate(){
         return this.carPlate;
     }
+    // Setters
+    public void setCarYear(int carYear){
+        this.carYear = carYear;
+    }
 
 
 
