@@ -1,26 +1,32 @@
 package carRevision;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class ExhaustPipe {
 
     private int ExhaustPipeId;
-    private int soundLevel;
-    private double co2Emision;
-    private boolean gasEmisionValue;
-
+    private double gasEmisionValue;
+    private String exhaustPipeStatus;
 
     public ExhaustPipe() {
         this.ExhaustPipeId = 0;
-        this.soundLevel = 0;
-        this.co2Emision = 0;
-        this.gasEmisionValue = false;
+        this.gasEmisionValue = 0;
+        this.exhaustPipeStatus = "";
     }
-    public ExhaustPipe(int ExhaustPipeId, int soundLevel, double co2Emision, boolean gasEmissionValue){
 
+    public ExhaustPipe(int ExhaustPipeId, double gasEmissionValue) {
         this.ExhaustPipeId = ExhaustPipeId;
-        this.soundLevel = soundLevel;
-        this.co2Emision = co2Emision;
         this.gasEmisionValue = gasEmissionValue;
+        this.exhaustPipeStatus = "";
+    }
 
+    public String getExhaustPipeStatus(){
+        return this.exhaustPipeStatus;
+    }
+
+    public void setExhaustPipeStatus(String status){
+        this.exhaustPipeStatus = status;
     }
 
     public int getExhaustPipeId() {
@@ -31,28 +37,35 @@ public class ExhaustPipe {
         this.ExhaustPipeId = ExhaustPipeId;
     }
 
-    public int getSoundLevel() {
-        return this.soundLevel;
-    }
-
-    public void setSoundLevel(int soundLevel) {
-        this.soundLevel = soundLevel;
-    }
-
-    public double getCo2Emision() {
-        return this.co2Emision;
-    }
-
-    public void setCo2Emision(double co2Emision) {
-        this.co2Emision = co2Emision;
-    }
-
-    public boolean isGasEmisionValue() {
+    public double getGasEmisionValue() {
         return this.gasEmisionValue;
     }
 
-    public void setGasEmisionValue(boolean gasEmisionValue) {
-        this.gasEmisionValue = gasEmisionValue;
+    public void setGasEmisionValue(Scanner sc, Car car) {
+        double gasEmisionValue = 0;
+        boolean validInput = false;
+        if (car.getCarEngine().getEngineType().equals("ELECTRICO")) {
+            System.out.println("Los autos electricos tiene cero emisiones de gases");
+            gasEmisionValue = 0;
+        } 
+        else {
+            do {
+                try {
+                    System.out.println("Ingrese el nivel de emisión ");
+                    gasEmisionValue = sc.nextDouble();
+
+                    if (gasEmisionValue >= 0) {
+                        this.gasEmisionValue = gasEmisionValue;
+                        validInput = true;
+                    } else {
+                        System.out.println("Por favor, ingrese un valor válido");
+                    }
+                } catch (InputMismatchException e) {
+                    sc.next();
+                    System.out.println("Por favor, ingrese un valor válido");
+                }
+            } while (!validInput);
+        }
     }
 
 }
