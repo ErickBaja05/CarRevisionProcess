@@ -15,26 +15,28 @@ public class App {
 //        testFine.showFine();
 //
 //
-//        //Test for the owner
+//        Test for the owner
 //        carRevision.Owner owner = new carRevision.Owner();
-//        owner.setOwnerId(sc);
+//         owner.setOwnerId(sc);
 //        owner.setOwnerName(sc);
 //        owner.setOwnerEmail(sc);
 //        owner.setOwnerPhone(sc);
 //        owner.printOwner();
 //
 //
-//        carRevision.DriverLicense license = new carRevision.DriverLicense();
-//        license.setDriverLicenseId(sc);
-//        license.setDriverLicenseCategory(sc);
-//        license.setDriverLicenseEmissionDate(sc);
-//        license.setDriverLicenseExpirationDate(sc);
-//        license.printDriverLicense();
+//
 //        sc.close();
+        carRevision.DriverLicense license = new carRevision.DriverLicense();
+        license.setDriverLicenseId(sc);
+        license.setDriverLicenseCategory(sc);
+        license.setDriverLicenseEmissionDate(sc);
+        license.setDriverLicenseExpirationDate(sc);
+        license.printDriverLicense();
+
         Car car1 = new Car();
         Inspector inspector1 = new Inspector(1,"Juan");
 
-          // /*
+          /*
          car1.getCarBrakes().setBrakeType(sc);
         System.out.println(car1.getCarBrakes().getBrakeType());
          car1.getCarBrakes().setBrakePadsStatus(sc);
@@ -42,7 +44,7 @@ public class App {
          inspector1.checkBrakeStatus(car1);
 
         System.out.println("Estado general de los frenos: " + car1.getCarBrakes().getBrakeOverallStatus());
-        //*/
+        */
 
         /*
         car1.getCarChassis().setMaterial(sc);

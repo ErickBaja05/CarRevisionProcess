@@ -7,10 +7,11 @@ import java.time.format.DateTimeFormatter;
 public class Fine {
     private static int fineCounter = 1;
     private final int fineId;
-    private String typeFine;
     private double fineCost;
     private final LocalDate fineDate;
 
+
+    private String typeFine;
     public Fine() {
         this.fineId = fineCounter;
         this.typeFine = "No fine";

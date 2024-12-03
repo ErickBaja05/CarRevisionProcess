@@ -10,6 +10,12 @@ public class DriverLicense {
     private LocalDate driverLicenseEmissionDate;
     private LocalDate driverLicenseExpirationDate;
 
+    public DriverLicense(){
+        driverLicenseId = "";
+        driverLicenseCategory = "";
+        driverLicenseEmissionDate = null;
+        driverLicenseExpirationDate = null;
+    }
 
     public DriverLicense(String driverLicenseId, String driverLicenseCategory,
                          LocalDate driverLicenseEmissionDate, LocalDate driverLicenseExpirationDate) {
@@ -21,12 +27,24 @@ public class DriverLicense {
     public void setDriverLicenseId(Scanner sc){
         boolean validInput = false;
         while (!validInput) { //This loop will check if the length of the ID is valid, if not, it will ask for it again.
+            String driverLicenseID;
             System.out.println("Ingrese el ID de la licencia de conducir: ");
-            this.driverLicenseId = sc.nextLine();
-            if(this.driverLicenseId.length() != 10){
+            driverLicenseID = sc.nextLine();
+            if(driverLicenseID.length() != 10){
                 System.out.println("El ID ingresado es invalido, intente de nuevo");
                 continue;
             }
+
+            try{
+                int driverLicenseIDIsNumeric = Integer.parseInt(driverLicenseID);
+            } catch(NumberFormatException e){
+                System.out.println("El numero ingresado no es valido, intente nuevamente:");
+                continue;
+            } catch(Exception e){
+                System.out.println("Error inesperado, intente nuevamente");
+                continue;
+            }
+
             validInput = true;
         }
     }
@@ -56,6 +74,7 @@ public class DriverLicense {
     }
     public void setDriverLicenseEmissionDate(Scanner sc) {
         boolean validInput = false;
+        LocalDate date = LocalDate.now();
         int dia = 1, mes = 1, anio = 1970;
         while ((!validInput) || //If the value entered is not an integer il will ask again for the information
                 ((dia > 31)||(dia < 1)) //If the day is invalid it will ask again
@@ -68,29 +87,40 @@ public class DriverLicense {
                 mes = Integer.parseInt(sc.nextLine());
                 System.out.println("Ingrese anio de emision:");
                 anio = Integer.parseInt(sc.nextLine());
-                validInput = true;
             } catch (NumberFormatException e) {
                 System.out.println("Alguno de los datos ingresados no es valido, intente nuevamente");
+                continue;
             } catch (Exception e){
                 System.out.println("Error inesperado, intente nuevamente");
+                continue;
             }
             //If the day, month or year fall out of range, it wil ask the user to re-enter the information
             if (((dia > 31)||(dia < 1))
                     || ((mes > 12)||(mes < 1))
                     || (anio < 1970)){
+
                 System.out.println("Alguno de los datos ingresados es erroneo, intente nuevamente");
             }
+            try{
+                date = LocalDate.of(anio,mes,dia);
+            }catch (Exception e){
+                System.out.println("La fecha es invalida, intente nuevmaente");
+                continue;
+            }
+
+            validInput = true;
 
         }
         this.driverLicenseEmissionDate = LocalDate.of(anio, mes, dia);
     }
     public void setDriverLicenseExpirationDate(Scanner sc) {
         boolean validInput = false;
+        LocalDate date = LocalDate.now();
         int dia = 1, mes = 1, anio = 1970;
         while ((!validInput) || //If the value entered is not an integer il will ask again for the information
                 ((dia > 31)||(dia < 1)) //If the day is invalid it will ask again
                 || ((mes > 12)||(mes < 1)) //If the month is invalid it will ask again
-                || (anio < 1970) ){ //If the year is invalid it will ask again {
+                || (anio < 1970)){ //If the year is invalid it will ask again {
             try {
                 System.out.println("Ingrese dia de expiracion:");
                 dia = Integer.parseInt(sc.nextLine());
@@ -98,18 +128,29 @@ public class DriverLicense {
                 mes = Integer.parseInt(sc.nextLine());
                 System.out.println("Ingrese anio de expiracion:");
                 anio = Integer.parseInt(sc.nextLine());
-                validInput = true;
             } catch (NumberFormatException e) {
                 System.out.println("Alguno de los datos ingresados no es valido, intente nuevamente");
+                continue;
             } catch (Exception e){
                 System.out.println("Error inesperado, intente nuevamente");
+                continue;
             }
             //If the day, month or year fall out of range, it wil ask the user to re-enter the information
             if (((dia > 31)||(dia < 1))
                     || ((mes > 12)||(mes < 1))
                     || (anio < 1970)){
+
                 System.out.println("Alguno de los datos ingresados es erroneo, intente nuevamente");
             }
+            try{
+                date = LocalDate.of(anio,mes,dia);
+            }catch (Exception e){
+                System.out.println("La fecha es invalida, intente nuevmaente");
+                continue;
+            }
+
+            validInput = true;
+
         }
         this.driverLicenseExpirationDate = LocalDate.of(anio, mes, dia);
 

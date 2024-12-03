@@ -31,9 +31,7 @@ public class Inspector {
                         //here we can add in the observations that the driver should  be weary of the brakes status.
                         System.out.println("Pastillas Regular");
                     }
-
-                    if(brakeHeatingRev > 350)
-                    {
+                    if(brakeHeatingRev > 350){
                         System.out.println("Calentamiento en rango tolerable");
                         //here we can say that the brakes are overheating a bit but it shouldn't be an issue.
                     }
