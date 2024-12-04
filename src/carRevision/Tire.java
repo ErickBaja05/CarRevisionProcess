@@ -36,12 +36,12 @@ public class Tire {
     public void setTireTreading(Scanner sc) {
 
         boolean validInput = false;
-        int TireTreading = 1;
+        double TireTreading = 0.0;
 
         while (!validInput){
             System.out.println("Ingrese el estado de la banda de rodadura de las llantas: ");
             try {
-                TireTreading = Integer.parseInt(sc.nextLine());
+                TireTreading = Double.parseDouble(sc.nextLine());
             } catch (NumberFormatException e){
                 System.out.println("El valor ingresado no es válido. Por favor, ingrese un valor válido.");
                 continue;
@@ -56,23 +56,24 @@ public class Tire {
             } else {
                 validInput = true;
             }
+
         }
-        this.tireTreading = tireTreading;
+        this.tireTreading = TireTreading;
     }
 
     public double getTirePresion() {
-        return tirePresion;
+        return this.tirePresion;
     }
 
     public void setTirePresion(Scanner sc) {
 
         boolean validInput = false;
-        int TirePresion = 1;
-
+        double TirePresion = 0.0;
+        System.out.println("*****INFORMACION SOBRE LAS LLANTAS*******");
         while (!validInput){
             System.out.println("Ingrese el valor de la presión de la llanta en libras por pulgada cuadrada (psi): ");
             try {
-                TirePresion = Integer.parseInt(sc.nextLine());
+                TirePresion = Double.parseDouble(sc.nextLine());
             } catch (NumberFormatException e){
                 System.out.println("El valor ingresado no es válido. Por favor, ingrese un valor válido.");
                 continue;
@@ -80,7 +81,6 @@ public class Tire {
                 System.out.println("Error inesperado, intente nuevamente.");
                 continue;
             }
-
             if (TirePresion < 20){
                 System.out.println("Revise la presión de las llantas e intente nuevamente.");
 
@@ -88,7 +88,7 @@ public class Tire {
                 validInput = true;
             }
         }
-        this.tirePresion = tirePresion;
+        this.tirePresion = TirePresion;
     }
 
     public void setTireOverallStatus(String overallStatus) {

@@ -7,7 +7,7 @@ public class Light {
     private int lightsId;
     private int lightStatus;
     private int lightIntensity;
-    private String ligthOverallStatus = "";
+    private String lightOverallStatus = "";
 
     public Light(){
         lightsId = 0;
@@ -40,7 +40,7 @@ public class Light {
     public void setLightStatus(Scanner sc) {
         boolean validInput = false;
         int lightStatus = -1;
-
+        System.out.println("*****INFORMACION SOBRE LAS LUCES*******");
         while (!validInput){
             System.out.println("Ingrese el estado de las luces (1 si están en buen estado, 0 si están quemadas): ");
             try {
@@ -71,34 +71,38 @@ public class Light {
     public void setLightIntensity(Scanner sc) {
         boolean validInput = false;
         int lightIntensity = 1;
+        if(this.lightStatus == 1){
+            while (!validInput){
+                System.out.println("Ingrese la intensidad de las luces en un rango entero 1-10, donde 1 es muy bueno y 10 es muy malo: ");
+                try {
+                    lightIntensity = Integer.parseInt(sc.nextLine());
+                } catch (NumberFormatException e){
+                    System.out.println("El valor ingresado no es válido. Por favor, ingrese 0 o 1.");
+                    continue;
+                } catch (Exception e){
+                    System.out.println("Error inesperado, intente nuevamente.");
+                    continue;
+                }
 
-        while (!validInput){
-            System.out.println("Ingrese la intensidad de las luces en un rango entero 1-10, donde 1 es muy bueno y 10 es muy malo: ");
-            try {
-                lightIntensity = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e){
-                System.out.println("El valor ingresado no es válido. Por favor, ingrese 0 o 1.");
-                continue;
-            } catch (Exception e){
-                System.out.println("Error inesperado, intente nuevamente.");
-                continue;
+                if(lightIntensity < 1 || lightIntensity > 10){
+                    System.out.println("El valor ingresado no es válido. Ingrese un entero del 1-10 dependiendo las condiciones de las luces, donde 1 es muy bueno y 10 es muy malo.");
+
+                } else {
+                    validInput = true;
+                }
             }
-
-            if(lightIntensity < 1 || lightIntensity > 10){
-                System.out.println("El valor ingresado no es válido. Ingrese un entero del 1-10 dependiendo las condiciones de las luces, donde 1 es muy bueno y 10 es muy malo.");
-
-            } else {
-                validInput = true;
-            }
+            this.lightIntensity = lightIntensity;
+        }else{
+            System.out.println("LUCES QUEMADAS");
         }
-        this.lightIntensity = lightIntensity;
+
     }
     public void setLightOverallStatus(String status) {
-        this.ligthOverallStatus = status;
+        this.lightOverallStatus = status;
     }
 
     public String getLightOverallStatus() {
-        return ligthOverallStatus;
+        return lightOverallStatus;
     }
 
 }

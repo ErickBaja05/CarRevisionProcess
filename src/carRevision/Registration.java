@@ -12,7 +12,6 @@ public class Registration {
     }
 
 
-
     public int getRegistrationID() {
         return registrationID;
     }
@@ -20,8 +19,6 @@ public class Registration {
     public void setRegistrationID(int registrationID) {
         this.registrationID = registrationID;
     }
-
-
 
 
     public String getRegistrationInfo(Owner owner) {

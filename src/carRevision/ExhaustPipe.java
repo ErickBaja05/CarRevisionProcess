@@ -44,6 +44,7 @@ public class ExhaustPipe {
     public void setGasEmisionValue(Scanner sc, Car car) {
         double gasEmisionValue = 0;
         boolean validInput = false;
+        System.out.println("*****INFORMACION SOBRE EL TUBO DE ESCAPE*******");
         if (car.getCarEngine().getEngineType().equals("ELECTRICO")) {
             System.out.println("Los autos electricos tiene cero emisiones de gases");
             gasEmisionValue = 0;

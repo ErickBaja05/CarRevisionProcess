@@ -4,7 +4,7 @@ package carRevision;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Locale;
-import java.time.LocalDate;
+
 public class App {
     public static void createLoadingSecuence(char type, int length, String message){
         for(int i = 0; i <= length; i++){
@@ -26,6 +26,10 @@ public class App {
             }
         }
         System.out.println("\n" + message);
+    }
+    public static void clearConsole(){
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     public static String printMainMenu(){
         StringBuilder menu = new StringBuilder();
@@ -72,34 +76,75 @@ public class App {
         boolean isStillInProcess = true;
 
         while(isStillInProcess){
+
             int op = mainMenuOption(sc);
             switch(op){
                 case 1:
+                    App.clearConsole();
                     System.out.println("A continuación debera llenar la información del propietario del vehiculo");
                     System.out.println("Cargando: ");App.createLoadingSecuence('|', 20, "Carga completada");
                     revision.getRevisionInspector().setOwnerInformation(revision.getRevisionOwner(),sc);
                     isOwnerFilled = true;
                     break;
                 case 2:
+                    App.clearConsole();
                     if(isOwnerFilled){
                         System.out.println("A continuación debera llenar la información del vehiculo del propietario ");
                         System.out.println("Cargando");App.createLoadingSecuence('|', 20, "Carga completada");
+                        revision.getRevisionInspector().setCarInformation(revision.getRevisionOwner(),car,sc);
+                        isCarFilled = true;
                     }else{
                         System.out.println("PRIMERO DEBE INGRESAR LOS DATOS DEL PROPIETARIO DEL VEHICULO");
                     }
                     break;
                 case 3:
+                    App.clearConsole();
                     if(isOwnerFilled && isCarFilled){
-                        System.out.println("COMENZANDO CON EL PROCESO DE REVISION");
-                        System.out.println("Revisando Frenos");
+                        App.createLoadingSecuence('|', 10, "COMENZANSO EL PROCESO DE REVISION");
+                        System.out.println("REVISANDO FRENOS...");
                         revision.getRevisionInspector().checkBrakeStatus(revision.getRevisionOwner().getOwnerCar(), revision);
                         App.createLoadingSecuence('|', 10, "Frenos Revisados!!");
-                        System.out.println(revision.getRevisionObservation());
-
+                        System.out.println("REVISANDO MOTOR...");
+                        revision.getRevisionInspector().checkEngine(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Motor Revisado!!");
+                        System.out.println("REVISANDO CHASIS...");
+                        revision.getRevisionInspector().checkChassisStatus(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Chasis Revisado!!");
+                        System.out.println("REVISANDO TUBO DE ESCAPE...");
+                        revision.getRevisionInspector().checkExhaustPipeStatus(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Tubo de escape Revisado!!");
+                        System.out.println("REVISANDO LUCES...");
+                        revision.getRevisionInspector().checkLightStatus(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Luces revisadas!!");
+                        System.out.println("REVISANDO LLANTAS...");
+                        revision.getRevisionInspector().checkTireStatus(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Llantas revisadas!!");
+                        System.out.println("REVISANDO IMPLEMENTOS ADICIONALES...");
+                        revision.getRevisionInspector().chechAditional(revision.getRevisionOwner().getOwnerCar(),revision);
+                        App.createLoadingSecuence('|', 10, "Implementos adicionales revisados!!");
+                        System.out.println("CALCULANDO RESULTADOS DE LA REVISION");
+                        App.createLoadingSecuence('|', 25, "Proceso de revision terminada");
+                        isRevisionDone = true;
+                        System.out.println("PUEDE VER LOS RESULTADOS DE LA REVISION EN LA OPCION \"4. MOSTRAR RESULTADOS \"");
+                        isProcessCompleted =true;
                     }else{
                         System.out.println("TANTO LOS DATOS DEL PROPIETARIO DEL VEHICULO COMO DEL VEHICULO DEBEN" +
                                 " INGRESARSE PREVIAMENTE PARA REALIZAR LA REVISION");
                     }
+                    break;
+                case 4:
+                    App.clearConsole();
+                    if(isRevisionDone){
+                        String results = revision.getResults();
+                        System.out.println(results);
+                    }else{
+                        System.out.println("NO SE HAN REALIZADO PROCESOS DE REVISION");
+                    }
+                    break;
+                case 5:
+                    System.out.println("HASTA LUEGO");
+                    isStillInProcess = false;
+
 
 
             }

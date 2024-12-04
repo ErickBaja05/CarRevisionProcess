@@ -41,6 +41,7 @@ public class Engine {
     public void setEngineType(Scanner sc) {
         boolean validInput = false;
         int op = 0;
+        System.out.println("*****INFORMACION SOBRE EL MOTOR*******");
         do {
             try {
                 System.out.println("Ingrese el tipo de motor entre las siguientes opciones:  ");
@@ -48,6 +49,7 @@ public class Engine {
                 System.out.println("2. DIESEL");
                 System.out.println("3. GASOLINA");
                 op = sc.nextInt();
+                sc.nextLine();
                 if (op == 1 || op == 2 || op == 3) {
                     switch (op) {
                         case 1:
@@ -65,7 +67,7 @@ public class Engine {
                     System.out.println("Por favor, ingrese un valor váldio");
                 }
             }catch (InputMismatchException e) {
-                sc.next();
+                sc.nextLine();
                 System.out.println("Por favor, ingrese un valor váldio");
             }
         }while(!validInput);
@@ -87,7 +89,7 @@ public class Engine {
                     System.out.println("Por favor, ingrese un valor válido");
                 }
             }catch(InputMismatchException e){
-                sc.next();
+                sc.nextLine();
                 System.out.println("Por favor, ingrese un valor válido");
             }
         }while(!validInput);
@@ -110,7 +112,6 @@ public class Engine {
         else{
             this.engineLeakage = false;
         }
-        sc.next();
     }
 
     // public boolean isOperational() {

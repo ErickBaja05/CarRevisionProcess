@@ -110,6 +110,7 @@ public class Chassis {
         boolean validInput = false;
         int chassisAllignment = 0;
         //The following function allows the inspector to evaluate on a scale from 1 to 10 the alignment of the chassis.
+        System.out.println("*****INFORMACION SOBRE EL CHASIS*******");
         while(!validInput)
         {
             System.out.println("Ingrese el grado de alineacion del chasis en un rango entero 1-10, siendo 10 alineado y 1 no alineado: ");
