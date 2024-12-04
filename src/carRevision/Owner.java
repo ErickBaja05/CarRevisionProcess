@@ -9,7 +9,7 @@ public class Owner {
     private String ownerEmail;
     private Car ownerCar;
     private Fine ownerFine;
-    private DriverLicense ownerLicense;
+
 
 
     public Owner() {
@@ -19,13 +19,12 @@ public class Owner {
         this.ownerEmail = "";
         this.ownerFine = new Fine();
     }
-    public Owner(String ownerId, String ownerName, String ownerPhone, String ownerEmail, Car ownerCar, DriverLicense ownerLicense) {
+    public Owner(String ownerId, String ownerName, String ownerPhone, String ownerEmail, Car ownerCar) {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.ownerPhone = ownerPhone;
         this.ownerEmail = ownerEmail;
         this.ownerCar = ownerCar;
-        this.ownerLicense = ownerLicense;
         this.ownerFine = new Fine();
     }
     public void setOwnerId(Scanner sc){
@@ -90,9 +89,7 @@ public class Owner {
     public void setOwnerFine(Fine ownerFine){
         this.ownerFine = ownerFine; //The fine will be changed by the AMT and will use this method to modify the user's fine.
     }
-    public void setOwnerLicense(DriverLicense ownerLicense){
-        this.ownerLicense = ownerLicense;
-    }
+
     public String getOwnerId() {
         return ownerId;
     }
@@ -110,9 +107,6 @@ public class Owner {
     }
     public Fine getOwnerFine() {
         return ownerFine;
-    }
-    public DriverLicense getOwnerLicense() {
-        return ownerLicense;
     }
     public void printOwner(){
         System.out.printf("Cedula: %s%nNombre: %s%nCelular: %s%nCorreo Electronico: %s%n",

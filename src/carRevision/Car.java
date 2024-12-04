@@ -16,13 +16,12 @@ public class Car {
     private Light carLights;
     private Chassis carChassis;
     private Owner owner;
-    private Registration carRegistration;
     private String carType;
     private int carYear;
     private ExhaustPipe exhaustPipe;
 
     // Constructor
-    public Car(int carId, String carColor, String carBrand, String carModel, String carPlate, boolean seatBelt, boolean firstAidKit, boolean emergencyTire, String carType, int carYear, Owner carOwner, Registration carRegistration){
+    public Car(int carId, String carColor, String carBrand, String carModel, String carPlate, boolean seatBelt, boolean firstAidKit, boolean emergencyTire, String carType, int carYear, Owner carOwner){
         this.carId = carId;
         this.carColor = carColor;
         this.carBrand = carBrand;
@@ -39,7 +38,6 @@ public class Car {
         this.carLights = new Light();
         this.carChassis = new Chassis();
         this.owner = carOwner;
-        this.carRegistration = new Registration();
         this.exhaustPipe = new ExhaustPipe();
     }
     // Constructor por defecto for testing
@@ -60,7 +58,6 @@ public class Car {
         this.carLights = new Light();
         this.carChassis = new Chassis();
         this.owner = null;
-        this.carRegistration = new Registration();
         this.exhaustPipe = new ExhaustPipe();
     }
 
@@ -113,9 +110,6 @@ public class Car {
         return this.owner;
     }
 
-    public Registration getCarRegistration() {
-        return this.carRegistration;
-    }
 
     public ExhaustPipe getExhaustPipe() {
         return this.exhaustPipe;
