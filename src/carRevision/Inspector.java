@@ -61,12 +61,12 @@ public class Inspector {
                 // here we say the brakes are overheating over the tolerated range.
             }
 
-            //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
-            if(car.getCarBrakes().getBrakeOverallStatus().equals("Bueno") || car.getCarBrakes().getBrakeOverallStatus().equals("Regular"))
-            {
-                result = true;
-            }
 
+        }
+        //Once the overall status is set, the following code will set the boolean stauts to true if the brake passes, or false if they don't.
+        if(car.getCarBrakes().getBrakeOverallStatus().equals("Bueno") || car.getCarBrakes().getBrakeOverallStatus().equals("Regular"))
+        {
+            result = true;
         }
         if(!result){
             revision.addMistake();
@@ -137,6 +137,7 @@ public class Inspector {
         {
             result = true;
         }
+
         if(!result){
             revision.addMistake();
         }
@@ -224,7 +225,7 @@ public class Inspector {
         }
         if(!result){
             revision.addMistake();
-        }
+       }
         return result;
     }
 
@@ -266,7 +267,7 @@ public class Inspector {
     public boolean checkTireStatus(Car car , Revision revision) {
         boolean result = false;
         double tireTreadingRev = car.getCarTire().getTireTreading();
-        double tirePresionRev = car.getCarTire().getTirePresion();
+        double tirePresionRev = car.getCarTire().getTirePression();
 
         // Evaluate the general condition of the tires
         if ((tireTreadingRev >= 1.66 && tirePresionRev >= 30) && tirePresionRev <= 40) {
@@ -301,6 +302,7 @@ public class Inspector {
 
     public boolean chechAditional(Car car, Revision revision) {
         boolean result = false;
+
         if(car.isSeatBelt() && car.isFirstAidKit()){
             result = true;
         }
@@ -310,13 +312,13 @@ public class Inspector {
             }else if(!car.isFirstAidKit()){
                 revision.setRevisionObservation("No cuenta con kit de primeros auxilios");
             }
-            result = false;
         }
         if(car.isEmergencyTire()){
             result = true;
         }else{
             revision.setRevisionObservation("No cuenta con llanta de emergencia");
         }
+
         if(!result){
             revision.addMistake();
         }
@@ -347,7 +349,7 @@ public class Inspector {
         owner.getOwnerCar().getCarChassis().setChassisCorrosion(sc);
         owner.getOwnerCar().getCarLights().setLightStatus(sc);
         owner.getOwnerCar().getCarLights().setLightIntensity(sc);
-        owner.getOwnerCar().getCarTire().setTirePresion(sc);
+        owner.getOwnerCar().getCarTire().setTirePression(sc);
         owner.getOwnerCar().getCarTire().setTireTreading(sc);
         owner.getOwnerCar().getCarEngine().setEngineType(sc);
         owner.getOwnerCar().getCarEngine().setEngineLeakage(sc);

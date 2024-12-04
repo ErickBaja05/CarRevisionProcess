@@ -59,8 +59,8 @@ public class Revision {
         Ant ant = new Ant(this.revisionOwner,this);
         StringBuilder results = new StringBuilder();
         results.append("RESULTADOS DE LA REVISION").append("\n");
-        results.append("NOMBRE DEL PROPIETARIO").append(this.revisionOwner.getOwnerName()).append("\n");
-        results.append("INFORMACION DEL VEHICULO REVISADO").append(this.revisionOwner.getOwnerCar().showCarInformation()).append("\n");
+        results.append("NOMBRE DEL PROPIETARIO").append('\n').append(this.revisionOwner.getOwnerName()).append("\n");
+        results.append("INFORMACION DEL VEHICULO REVISADO").append("\n").append(this.revisionOwner.getOwnerCar().showCarInformation()).append("\n");
         if(this.mistakesCounter == 0){
             results.append("RESULTADO: APROBADO").append("\n");
             results.append("NO HAY MULTAS").append("\n");

@@ -1,6 +1,5 @@
 package carRevision;
 import java.util.Scanner;
-import java.util.Locale;
 
 public class Tire {
 
@@ -61,11 +60,11 @@ public class Tire {
         this.tireTreading = TireTreading;
     }
 
-    public double getTirePresion() {
+    public double getTirePression() {
         return this.tirePresion;
     }
 
-    public void setTirePresion(Scanner sc) {
+    public void setTirePression(Scanner sc) {
 
         boolean validInput = false;
         double TirePresion = 0.0;

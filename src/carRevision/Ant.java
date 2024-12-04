@@ -14,7 +14,7 @@ public class Ant {
 
         Fine fine = new Fine();
         if (this.revisionData.getMistakesCounter() > 0){
-            fine.setFineCost(270);
+            fine.setFineCost(50);
             fine.setTypeFine();
         }
         carOwner.setOwnerFine(fine);
