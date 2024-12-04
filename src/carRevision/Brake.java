@@ -27,6 +27,7 @@ public class Brake {
         int brakeHeating = 100;
         while(!validInput)
         {
+            System.out.println("*****INFORMACION SOBRE LOS FRENOS*******");
             System.out.println("Ingrese la temperatura de las pastillas de freno en grados Celsius en enteros: ");
             try{
                 brakeHeating = Integer.parseInt(sc.nextLine());

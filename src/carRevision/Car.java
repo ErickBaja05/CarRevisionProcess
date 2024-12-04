@@ -1,6 +1,6 @@
 package carRevision;
-
-
+import java.util.InputMismatchException;
+import java.util.Scanner;
 public class Car {
     private int carId;
     private String carColor;
@@ -39,23 +39,40 @@ public class Car {
         this.carLights = new Light();
         this.carChassis = new Chassis();
         this.owner = carOwner;
-        this.carRegistration = carRegistration;
+        this.carRegistration = new Registration();
         this.exhaustPipe = new ExhaustPipe();
     }
     // Constructor por defecto for testing
     public Car(){
+        this.carId = 0;
+        this.carColor = "";
+        this.carBrand = "";
+        this.carModel = "";
+        this.carPlate = "";
+        this.seatBelt = false;
+        this.firstAidKit = false;
+        this.emergencyTire = false;
+        this.carType = "";
+        this.carYear = 0;
         this.carBrakes = new Brake();
+        this.carEngine = new Engine();
+        this.carTire = new Tire();
+        this.carLights = new Light();
         this.carChassis = new Chassis();
+        this.owner = null;
+        this.carRegistration = new Registration();
+        this.exhaustPipe = new ExhaustPipe();
     }
 
     // Metodos
-    public void showCarInformation(){
+    public String showCarInformation(){
         StringBuilder stringC = new StringBuilder();
-        stringC.append("Características del Vehículo:\n");
-        stringC.append("Id: ").append(this.carId).append('\n');
+        stringC.append("Color: ").append(this.carColor).append('\n');
         stringC.append("Tipo de vehículo: ").append(this.carType).append('\n');
-        stringC.append("Modelo: ").append(this.carBrakes).append('\n');
+        stringC.append("Modelo: ").append(this.carModel).append('\n');
         stringC.append("Año: ").append(this.carYear).append('\n');
+        stringC.append("Placas: ").append(this.carPlate).append('\n');
+        return stringC.toString();
     }
 
     // Getters
@@ -108,13 +125,178 @@ public class Car {
         return this.carPlate;
     }
     // Setters
-    public void setCarYear(int carYear){
+    public void setCarYear(Scanner sc) {
+        boolean validInput = false;
+        int carYear = 0;
+
+        while (!validInput) {
+            System.out.println("Ingrese el anio del auto:");
+            try {
+                carYear = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado no es valido, inente nuevamente");
+                continue;
+            } catch (Exception e) {
+                System.out.println("Error inesperado, intente nuevamente");
+                continue;
+            }
+            if(carYear < 1900){
+                System.out.println("Revise el anio e intente nuevamente");
+                continue;
+            }
+            validInput = true;
+        }
         this.carYear = carYear;
     }
     public int getCarYear(){
         return this.carYear;
     }
 
+    public void setCarColor(Scanner sc) {
+        boolean validInput = false;
+        int op = 0;
+        System.out.println("Escoja un color para su vehículo");
+        do {
+            try {
+                System.out.println("1. Azul \n2. Rojo \n3. Gris \n4. Naranja \n5. Blanco \n6. Negro");
+                System.out.print("Opcion (1/2/../6): ");
+                op = sc.nextInt();
+                sc.nextLine();
+                if (op >= 1 && op <= 6) {
+                    switch (op) {
+                        case 1:
+                            this.carColor = "Azul";
+                            break;
+                        case 2:
+                            this.carColor = "Rojo";
+                            break;
+                        case 3:
+                            this.carColor = "Gris";
+                            break;
+                        case 4:
+                            this.carColor = "Naranja";
+                            break;
+                        case 5:
+                            this.carColor = "Blanco";
+                            break;
+                        case 6:
+                            this.carColor = "Negro";
+                    }
+                    validInput = true;
+                } else {
+                    System.out.println("Por favor, seleccione una opcion válida");
+                }
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Por favor, seleccione una opcion válida");
+            }
+        } while (!validInput);
+    }
+    // Marca
+    public void setCarBrand(Scanner sc){
+        boolean validInput = false;
+        int op = 0;
+        System.out.println("Escoja la marca de su vehiculo:");
+        do {
+            try {
+                System.out.println("1. Chevrolet \n2. Nissan \n3. Ford \n4. Toyota \n5. Mercedes Benz");
+                System.out.print("Opcion (1/2/../5): ");
+                op = sc.nextInt();
+                sc.nextLine();
+                if (op >= 1 && op <= 5) {
+                    switch (op) {
+                        case 1:
+                            this.carBrand = "Chevrolet";
+                            break;
+                        case 2:
+                            this.carBrand = "Nissan";
+                            break;
+                        case 3:
+                            this.carBrand = "Ford";
+                            break;
+                        case 4:
+                            this.carBrand = "Toyota";
+                            break;
+                        case 5:
+                            this.carBrand = "Mercedes Benz";
+                    }
+                    validInput = true;
+                } else {
+                    System.out.println("Por favor, seleccione una opcion válida");
+                }
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Por favor, seleccione una opcion válida");
+            }
+        } while (!validInput);
+    }
+    // Modelo
+    public void setCarModel(Scanner sc){
+        System.out.println("Ingrese el modelo de su vehículo:");
+        this.carModel = sc.nextLine();
+    }
+    // Placa
+    public void setCarPlate(Scanner sc){
+        System.out.println("Ingrese la placa del vehiculo:");
+        this.carPlate = sc.nextLine();
+    }
+
+    public void setSeatBelt(Scanner sc){
+        System.out.println("¿El vehículo presenta cinturones de seguridad en buen estado?");
+        String op = "";
+        do{
+            System.out.print("Si/No: ");
+            op = sc.nextLine();
+            if (!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op)) {
+                System.out.println("Por favor, ingrese una opcion válida");
+            }
+        }while(!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op));
+        if(op.equalsIgnoreCase("si")){
+            this.seatBelt = true;
+        }
+        else{
+            this.seatBelt = false;
+        }
+
+    }
+
+    public void setFirstAidKit(Scanner sc){
+        System.out.println("¿El vehículo presenta kit de primeros auxilios?");
+        String op = "";
+        do{
+            System.out.print("Si/No: ");
+            op = sc.nextLine();
+            if (!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op)) {
+                System.out.println("Por favor, ingrese una opcion válida");
+            }
+        }while(!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op));
+        if(op.equalsIgnoreCase("si")){
+            this.firstAidKit = true;
+        }
+        else{
+            this.firstAidKit = false;
+        }
+
+    }
+
+    public void setEmergencyTire(Scanner sc){
+        System.out.println("¿El vehículo presenta una llanta de emergencia?");
+        String op = "";
+        do{
+            System.out.print("Si/No: ");
+            op = sc.nextLine();
+            if (!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op)) {
+                System.out.println("Por favor, ingrese una opcion válida");
+            }
+        }while(!"si".equalsIgnoreCase(op) && !"no".equalsIgnoreCase(op));
+        if(op.equalsIgnoreCase("si")){
+            this.emergencyTire = true;
+        }
+        else{
+            this.emergencyTire = false;
+        }
+
+    }
 
 
 

@@ -14,15 +14,15 @@ public class Fine {
     private String typeFine;
     public Fine() {
         this.fineId = fineCounter;
-        this.typeFine = "No fine";
+        this.typeFine = "SIN MULTAS";
         this.fineCost = 0.0;
         this.fineDate = LocalDate.now();
         fineCounter++;
     }
-    public void setTypeFine(Scanner sc)
+    public void setTypeFine()
     {
-        System.out.println("Ingrese el tipo de multa:");
-        this.typeFine = sc.nextLine();
+
+        this.typeFine = "MULTA POR NO APROBACION DEL PROCESO DE REVISION";
     }
     public void setFineCost(double penalty)
     {
@@ -42,9 +42,14 @@ public class Fine {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.fineDate.format(formatter);
     }
-    public void showFine(){
-        System.out.printf("Multa N°: %d%nFecha: %s%nTipo de Multa: %s%nMonto a pagar: $%.2f%n",
-                this.fineId, getDate(), this.typeFine, this.fineCost);
+    public String showFine(){
+        StringBuilder fine = new StringBuilder();
+        fine.append("Multa N ").append(this.fineId).append("\n");
+        fine.append("Fecha emision: ").append(this.getDate()).append("\n");
+        fine.append("Tipo de Multa: ").append(this.getTypeFine()).append("\n");
+        fine.append("Valor a Pagar: ").append(this.getFineCost()).append("\n");
+
+        return fine.toString();
     }
 }
 

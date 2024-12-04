@@ -5,8 +5,18 @@ public class Ant {
     private Owner carOwner;
 
     // Constructor
-    public void Revision(Owner carOwner, Revision revisionData) {
+    public Ant(Owner carOwner, Revision revisionData) {
         this.carOwner = carOwner;
         this.revisionData = revisionData;
+    }
+
+    public void generateFine(Owner carOwner) {
+
+        Fine fine = new Fine();
+        if (this.revisionData.getMistakesCounter() > 0){
+            fine.setFineCost(270);
+            fine.setTypeFine();
+        }
+        carOwner.setOwnerFine(fine);
     }
 }
