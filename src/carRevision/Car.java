@@ -1,5 +1,6 @@
 package carRevision;
 
+import java.util.Scanner;
 
 public class Car {
     private int carId;
@@ -108,14 +109,32 @@ public class Car {
         return this.carPlate;
     }
     // Setters
-    public void setCarYear(int carYear){
+    public void setCarYear(Scanner sc) {
+        boolean validInput = false;
+        int carYear = 0;
+
+        while (!validInput) {
+            System.out.println("Ingrese el anio del auto:");
+            try {
+                carYear = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("El valor ingresado no es valido, inente nuevamente");
+                continue;
+            } catch (Exception e) {
+                System.out.println("Error inesperado, intente nuevamente");
+                continue;
+            }
+            if(carYear < 1900){
+                System.out.println("Revise el anio e intente nuevamente");
+                continue;
+            }
+            validInput = true;
+        }
         this.carYear = carYear;
     }
     public int getCarYear(){
         return this.carYear;
     }
-
-
-
-
 }
+
+
