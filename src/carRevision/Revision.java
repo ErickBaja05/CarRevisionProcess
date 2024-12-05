@@ -55,6 +55,8 @@ public class Revision {
         return this.mistakesCounter;
     }
 
+
+    // RETURNS THE RESULT OF ALL THE INSPECTION AS A STRING INVOKING THE CAR AND THE OWNER INFORMATION
     public String getResults(){
         Ant ant = new Ant(this.revisionOwner,this);
         StringBuilder results = new StringBuilder();

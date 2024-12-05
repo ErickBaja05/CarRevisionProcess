@@ -4,33 +4,16 @@ import java.util.Locale;
 
 public class Light {
 
-    private int lightsId;
+
     private int lightStatus;
     private int lightIntensity;
     private String lightOverallStatus = "";
 
     public Light(){
-        lightsId = 0;
         lightStatus = 0;
         lightIntensity = 0;
     }
-    public Light(int lightsId, int lightStatus, int lightIntensity){
 
-        this.lightsId = lightsId;
-        this.lightStatus = lightStatus;
-        this.lightIntensity = lightIntensity;
-
-    }
-
-    public int getLightsId() {
-
-        return lightsId;
-    }
-
-    public void setLightsId(int lightsId) {
-
-        this.lightsId = lightsId;
-    }
 
     public int getLightStatus() {
 

@@ -72,7 +72,7 @@ public class Engine {
             }
         }while(!validInput);
     }
-    // Mediante esta función el usuario puede ingresar la temperatura del motor
+
     public void setEngineTemperature(Scanner sc){
         boolean validInput = false;
         double engineTemperature = 0;
@@ -80,7 +80,7 @@ public class Engine {
             try{
                 System.out.println("Ingrese la temperatura del motor");
                 engineTemperature = sc.nextDouble();
-                // El rango de temperaturas disponibles va desde los 40°C a 150°C, a tal de limitar el ingreso de datos
+
                 if (engineTemperature > 40 && engineTemperature < 150) {
                     this.engineTemperature = engineTemperature;
                     validInput = true;
@@ -95,7 +95,7 @@ public class Engine {
         }while(!validInput);
     }
 
-    // Esta funcion permite determinar la presencia de fugas del motor
+
     public void setEngineLeakage(Scanner sc){
         System.out.println("¿El motor presenta fugas?");
         String op = "";
@@ -113,12 +113,5 @@ public class Engine {
             this.engineLeakage = false;
         }
     }
-
-    // public boolean isOperational() {
-    //     return this.isOperational;
-    // }
-    // public void setOperational(boolean operational) {
-    //     isOperational = operational;
-    // }
 
 }

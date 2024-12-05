@@ -17,13 +17,6 @@ public class Chassis {
         this.chassisAlignment = 0;
         this.suspensionBounce = 0;
     }
-    public Chassis(String material, double weight) {
-        this.material = material;
-        this.weight = weight;
-        this.chassisCorrosion = 0;
-        this.chassisAlignment = 0;
-        this.suspensionBounce = 0;
-    }
 
     public String getMaterial() {
         return material;
@@ -32,7 +25,6 @@ public class Chassis {
     public void setMaterial(Scanner sc) {
         String material = "";
         boolean validInput = false;
-        //The following function allows the inspector to enter the chassis' material.
         while(!validInput)
         {
             System.out.println("Ingrese el material del chasis: ");
@@ -55,7 +47,6 @@ public class Chassis {
     public void setWeight(Scanner sc) {
         double weight = 0;
         boolean validInput = false;
-        //The following function allows the inspector to enter the chassis' weight.
         while(!validInput)
         {
             System.out.println("Ingrese el peso del material en toneladas: ");
@@ -80,7 +71,6 @@ public class Chassis {
     public void setChassisCorrosion(Scanner sc) {
         boolean validInput = false;
         int chassisCorrosion = 1;
-        //The following function allows the inspector to assign a score to the chassis' corrosion.
         while(!validInput)
         {
             System.out.println("Ingrese una calificacion para la corrosión del chasis en un rango entero 1-10 siendo 10 sin corrosion y 1 con alta corrosion: ");
@@ -109,7 +99,6 @@ public class Chassis {
     public void setChassisAlignmentLevel(Scanner sc) {
         boolean validInput = false;
         int chassisAllignment = 0;
-        //The following function allows the inspector to evaluate on a scale from 1 to 10 the alignment of the chassis.
         System.out.println("*****INFORMACION SOBRE EL CHASIS*******");
         while(!validInput)
         {
@@ -139,7 +128,6 @@ public class Chassis {
     public void setSuspensionBounce(Scanner sc) {
         boolean validInput = false;
         int suspensionBounce = 0;
-        //The following function allows the inspector to evluate on a scale from 1 to 10 the alignment of the chassis.
         while(!validInput)
         {
             System.out.println("Ingrese la calificacion del rebote de la suspension 1-10, sinedo 10 normal y 1 anormal: ");

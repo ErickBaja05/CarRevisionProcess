@@ -11,18 +11,14 @@ public class Brake {
         this.brakePadsStatus = 0;
         this.brakeOverallStatus = "";
     }
-    public Brake(int brakeHeating, int brakePadsStatus){
-        this.brakeHeating = brakeHeating;
-        this.brakeOverallStatus = "";
-        this.brakePadsStatus = brakePadsStatus;
-    }
+
 
     public int getBrakeHeating() {
         return brakeHeating;
     }
 
     public void setBrakeHeating(Scanner sc) {
-        //The following function allows the inspector to enter the temperature of the brake pads' heating.
+
         boolean validInput = false;
         int brakeHeating = 100;
         while(!validInput)
@@ -54,7 +50,7 @@ public class Brake {
     public void setBrakePadsStatus(Scanner sc) {
         boolean validInput = false;
         int brakePadsStatus = 1;
-        //The following function allows the inspector to assign a score to the brake pads' status.
+
         while(!validInput)
         {
             System.out.println("Ingrese una calificacion para las pastillas del freno en un rango entero 1-10: ");

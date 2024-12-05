@@ -3,30 +3,14 @@ import java.util.Scanner;
 
 public class Tire {
 
-    private int tiredId;
     private double tireTreading;
     private double tirePresion;
     private String overallStatus;
     public Tire(){
-        this.tiredId = 0;
         this.tireTreading = 0;
         this.tirePresion = 0;
     }
-    public Tire(int tiredId, double tireTreading, double tirePresion){
 
-        this.tiredId = tiredId;
-        this.tireTreading = tireTreading;
-        this.tirePresion = tirePresion;
-
-    }
-
-    public int getTiredId() {
-        return tiredId;
-    }
-
-    public void setTiredId(int tiredId) {
-        this.tiredId = tiredId;
-    }
 
     public double getTireTreading() {
         return tireTreading;

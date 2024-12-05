@@ -20,7 +20,7 @@ public class Car {
     private int carYear;
     private ExhaustPipe exhaustPipe;
 
-    // Constructor
+
     public Car(int carId, String carColor, String carBrand, String carModel, String carPlate, boolean seatBelt, boolean firstAidKit, boolean emergencyTire, String carType, int carYear, Owner carOwner){
         this.carId = carId;
         this.carColor = carColor;
@@ -40,7 +40,7 @@ public class Car {
         this.owner = carOwner;
         this.exhaustPipe = new ExhaustPipe();
     }
-    // Constructor por defecto for testing
+
     public Car(){
         this.carId = 0;
         this.carColor = "";
@@ -61,7 +61,7 @@ public class Car {
         this.exhaustPipe = new ExhaustPipe();
     }
 
-    // Metodos
+
     public String showCarInformation(){
         StringBuilder stringC = new StringBuilder();
         stringC.append("Color: ").append(this.carColor).append('\n');
@@ -72,7 +72,6 @@ public class Car {
         return stringC.toString();
     }
 
-    // Getters
 
     public Brake getCarBrakes() {
         return this.carBrakes;
@@ -118,7 +117,7 @@ public class Car {
     public String getCarPlate(){
         return this.carPlate;
     }
-    // Setters
+
     public void setCarYear(Scanner sc) {
         boolean validInput = false;
         int carYear = 0;
@@ -186,7 +185,7 @@ public class Car {
             }
         } while (!validInput);
     }
-    // Marca
+
     public void setCarBrand(Scanner sc){
         boolean validInput = false;
         int op = 0;
@@ -224,12 +223,12 @@ public class Car {
             }
         } while (!validInput);
     }
-    // Modelo
+
     public void setCarModel(Scanner sc){
         System.out.println("Ingrese el modelo de su vehículo:");
         this.carModel = sc.nextLine();
     }
-    // Placa
+
     public void setCarPlate(Scanner sc){
         System.out.println("Ingrese la placa del vehiculo:");
         this.carPlate = sc.nextLine();

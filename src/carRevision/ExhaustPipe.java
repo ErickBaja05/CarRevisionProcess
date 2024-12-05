@@ -15,11 +15,7 @@ public class ExhaustPipe {
         this.exhaustPipeStatus = "";
     }
 
-    public ExhaustPipe(int ExhaustPipeId, double gasEmissionValue) {
-        this.ExhaustPipeId = ExhaustPipeId;
-        this.gasEmisionValue = gasEmissionValue;
-        this.exhaustPipeStatus = "";
-    }
+
 
     public String getExhaustPipeStatus(){
         return this.exhaustPipeStatus;

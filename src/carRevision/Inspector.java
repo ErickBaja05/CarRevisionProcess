@@ -1,23 +1,20 @@
 package carRevision;
 
 import java.util.Scanner;
-//
-//
+
 
 public class Inspector {
     private int inspectorId;
     private String inspectorName;
 
-    // Constructor
+
     public Inspector(int id, String name) {
         this.inspectorId = id;
         this.inspectorName = name;
     }
 
-    // Metodos
-    // Funciones que el inspector realiza durante la revision:
 
-    // Respecto a frenos, el inspector revisa el estado de las pastillas, la temperatura y la eficiencia de frenado
+
     public boolean checkBrakeStatus(Car car, Revision revision){
 
         boolean result = false;
@@ -147,16 +144,12 @@ public class Inspector {
 
 
 
-    // Esta funcion permite al revisor evaluar el motor, teniendo en cuenta la
-    // temperatura y filtrado del motor. Si cumple con lo
-    // establecido, se retornará true, caso contrario, false
 
     public boolean checkEngine(Car car, Revision revision) {
         double engineTemperature = car.getCarEngine().getEngineTemperature();
         boolean engineLeakage = car.getCarEngine().isEngineLeakage();
         boolean result;
-        // Independientemente del tipo de combustion del motor, la temperatura ideal va
-        // de 90°C a 100°C
+
         if (engineLeakage) {
             car.getCarEngine().setEngineStatus("Deficiente");
             revision.setRevisionObservation("El motor presenta fugas");

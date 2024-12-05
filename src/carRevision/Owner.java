@@ -19,14 +19,7 @@ public class Owner {
         this.ownerEmail = "";
         this.ownerFine = new Fine();
     }
-    public Owner(String ownerId, String ownerName, String ownerPhone, String ownerEmail, Car ownerCar) {
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.ownerPhone = ownerPhone;
-        this.ownerEmail = ownerEmail;
-        this.ownerCar = ownerCar;
-        this.ownerFine = new Fine();
-    }
+
     public void setOwnerId(Scanner sc){
         boolean validInput = false;
         String ownerID = "";
@@ -84,10 +77,10 @@ public class Owner {
         this.ownerEmail = sc.nextLine();
     }
     public void setOwnerCar(Car ownerCar){
-        this.ownerCar = ownerCar; //We must wait to invoke all car functions here to set the car
+        this.ownerCar = ownerCar;
     }
     public void setOwnerFine(Fine ownerFine){
-        this.ownerFine = ownerFine; //The fine will be changed by the AMT and will use this method to modify the user's fine.
+        this.ownerFine = ownerFine;
     }
 
     public String getOwnerId() {
@@ -108,8 +101,5 @@ public class Owner {
     public Fine getOwnerFine() {
         return ownerFine;
     }
-    public void printOwner(){
-        System.out.printf("Cedula: %s%nNombre: %s%nCelular: %s%nCorreo Electronico: %s%n",
-                this.getOwnerId(), this.getOwnerName(), this.getOwnerPhone(), this.getOwnerEmail());
-    }
+
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.Locale;
 
 public class App {
+    // RECIEVES THE CHAR TO PRINT THE SECUENCE, THE LENTGH OF THE BAR , AND THE ENDING MESSAGE
     public static void createLoadingSecuence(char type, int length, String message){
         for(int i = 0; i <= length; i++){
             int porcetaje = (i * 100)/length;
@@ -27,10 +28,13 @@ public class App {
         }
         System.out.println("\n" + message);
     }
+    // ALLOWS TO CLEAR THE COMMAND PROMPT
     public static void clearConsole(){
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    // RETURNS THE MAIN MENU AS A STRING
     public static String printMainMenu(){
         StringBuilder menu = new StringBuilder();
         menu.append("*******SISTEMA DE REVISION VEHICULAR 2024-B ***************").append("\n");
@@ -42,7 +46,7 @@ public class App {
         menu.append("INGRESA LO QUE DESEAS REALIZAR EL DIA DE HOY: ");
         return menu.toString();
     }
-
+    // CONTROLS ONLY VALID OPTIONS FOR THE MAIN MENU
     public static int mainMenuOption(Scanner sc){
         int op = 0;
         do{
@@ -61,7 +65,7 @@ public class App {
         return op;
     }
 
-
+    // MAIN APP
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         sc.useLocale(Locale.ENGLISH);
@@ -72,7 +76,6 @@ public class App {
         boolean isOwnerFilled = false;
         boolean isCarFilled = false;
         boolean isRevisionDone = false;
-        boolean isProcessCompleted = false;
         boolean isStillInProcess = true;
 
         while(isStillInProcess){
@@ -126,7 +129,6 @@ public class App {
                         App.createLoadingSecuence('|', 25, "Proceso de revision terminada");
                         isRevisionDone = true;
                         System.out.println("PUEDE VER LOS RESULTADOS DE LA REVISION EN LA OPCION \"4. MOSTRAR RESULTADOS \"");
-                        isProcessCompleted =true;
                     }else{
                         System.out.println("TANTO LOS DATOS DEL PROPIETARIO DEL VEHICULO COMO DEL VEHICULO DEBEN" +
                                 " INGRESARSE PREVIAMENTE PARA REALIZAR LA REVISION");
@@ -149,9 +151,6 @@ public class App {
 
             }
         }
-
-
-
 
         }
     }

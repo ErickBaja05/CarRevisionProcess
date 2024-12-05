@@ -42,6 +42,8 @@ public class Fine {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.fineDate.format(formatter);
     }
+
+    // Returns a String with the explicit information of the fine
     public String showFine(){
         StringBuilder fine = new StringBuilder();
         fine.append("Multa N ").append(this.fineId).append("\n");
