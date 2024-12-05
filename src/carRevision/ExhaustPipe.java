@@ -5,12 +5,11 @@ import java.util.Scanner;
 
 public class ExhaustPipe {
 
-    private int ExhaustPipeId;
     private double gasEmisionValue;
     private String exhaustPipeStatus;
 
     public ExhaustPipe() {
-        this.ExhaustPipeId = 0;
+
         this.gasEmisionValue = 0;
         this.exhaustPipeStatus = "";
     }
@@ -25,13 +24,7 @@ public class ExhaustPipe {
         this.exhaustPipeStatus = status;
     }
 
-    public int getExhaustPipeId() {
-        return this.ExhaustPipeId;
-    }
 
-    public void setExhaustPipeId(int ExhaustPipeId) {
-        this.ExhaustPipeId = ExhaustPipeId;
-    }
 
     public double getGasEmisionValue() {
         return this.gasEmisionValue;

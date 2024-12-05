@@ -6,6 +6,7 @@ public class Tire {
     private double tireTreading;
     private double tirePresion;
     private String overallStatus;
+
     public Tire(){
         this.tireTreading = 0;
         this.tirePresion = 0;

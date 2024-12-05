@@ -4,7 +4,6 @@ import java.util.Locale;
 
 public class Light {
 
-
     private int lightStatus;
     private int lightIntensity;
     private String lightOverallStatus = "";
